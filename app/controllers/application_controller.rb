@@ -1,6 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+   def after_sign_in_path_for(resource)
+      case resource
+      when Administrator
+        administrators_path
+      when Customer
+        customers_path
+      end
+   end
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
