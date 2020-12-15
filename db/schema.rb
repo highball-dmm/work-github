@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_12_15_021915) do
+=======
+ActiveRecord::Schema.define(version: 2020_12_15_031231) do
+>>>>>>> origin/develop
 
   create_table "administrators", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -42,6 +46,15 @@ ActiveRecord::Schema.define(version: 2020_12_15_021915) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
+  end
+
+  create_table "shipping_addresses", force: :cascade do |t|
+    t.integer "customer_id"
+    t.string "postcode"
+    t.string "address"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
