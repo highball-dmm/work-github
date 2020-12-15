@@ -2,7 +2,7 @@ class ShippingAddressesController < ApplicationController
     before_action :authenticate_customer!
 
   def index
-	@shipping_addresses = ShippingAddress.all
+		@shipping_addresses = ShippingAddress.all
   	@shipping_address = ShippingAddress.new
   end
 
@@ -40,7 +40,7 @@ class ShippingAddressesController < ApplicationController
 	  redirect_to shipping_addresses_path
 	  end
  end
- 
+
 
 private
 
