@@ -1,0 +1,24 @@
+<%= render "layouts/logout.admin" %>
+
+<h1>管理者のindex</h1>
+
+<table>
+  <thead>
+    <tr>
+      <td></td>
+      <td>ユーザー名(姓)</td>
+      <td>ユーザー名(名)</td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @customers.each do |customer| %>
+    <tr>
+      <td></td>
+      <td><%= customer.first_name %></td>
+      <td><%= customer.last_name %></td>
+      <td><%= link_to "カスタマー詳細へ", customer_path(customer) %></td>
+      <td><%= link_to "編集", edit_customer_path(customer) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

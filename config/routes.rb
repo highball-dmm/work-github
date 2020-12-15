@@ -11,4 +11,8 @@ Rails.application.routes.draw do
   }
 
   root :to => "homes#top"
+  get 'administrator' => "homes#administrator", :as => "homes_administrator"
+
+  resources :administrators
+  resources :customers
 end
