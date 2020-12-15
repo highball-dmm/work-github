@@ -4,6 +4,16 @@ class CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
   end
 
+  def hide
+    @customer = Customer.find(params[:id])
+    @customer.update(user_status: true)
+    reset_session
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to root_path
+  end
+
+
+
   def edit
     @customer = Customer.find(params[:id])
   end
@@ -14,13 +24,7 @@ class CustomersController < ApplicationController
     redirect_to customer_path(@customer.id)
   end
 
-  def hide
-    @customer = Customer.find(params[:id])
-    @customer.update(user_status: true)
-    reset_session
-    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
-    redirect_to customer_path(@customer.id)
-  end
+
 
   private
 
