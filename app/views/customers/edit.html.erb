@@ -1,0 +1,44 @@
+<h1>カスタマーの編集ページ</h1>
+
+<%= form_with model:@customer, local:true do |f| %>
+<table>
+  <tr>
+    <td>
+      名前(姓)<br><%= f.text_field :first_name %>
+    </td>
+    <td>
+      名前 (名)<br><%= f.text_field :last_name %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      フリガナ (姓)<br><%= f.text_field :first_name_kana %>
+    </td>
+    <td>
+      フリガナ (名)<br><%= f.text_field :last_name_kana %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      郵便番号<br><%= f.text_field :postcode %>
+    </td>
+    <td>
+      住所<br><%= f.text_field :address %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      電話番号<br><%= f.text_field :phone_number %>
+    </td>
+    <td>
+      メールアドレス<br><%= f.email_field :email %>
+    </td>
+  </tr>
+  <tr>
+    <td><%= f.submit "保存" %></td>
+  </tr>
+  <tr>
+    <td><%= link_to "一覧へ戻る", administrators_path %></td>
+  </tr>
+</table>
+<% end %>
