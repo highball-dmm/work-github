@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :customers
-  
-  
-  
-  resources :shipping_addresses,only: [:index,:create,:edit,:update,:destroy]
-  
   devise_for :administrators, controllers: {
     sessions:      'administrators/sessions',
     passwords:     'administrators/passwords',
@@ -17,4 +11,6 @@ Rails.application.routes.draw do
   }
 
   root :to => "homes#top"
+  
+    resources :shipping_addresses,only: [:index,:create,:edit,:update,:destroy]
 end
