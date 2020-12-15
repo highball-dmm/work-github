@@ -14,5 +14,7 @@ Rails.application.routes.draw do
 
   root :to => "homes#top"
   resources :customers, only: [:show, :edit, :update]
+  put "/customers/:id/hide" => "customers#hide", as: 'customers_hide'
+
 
 end
