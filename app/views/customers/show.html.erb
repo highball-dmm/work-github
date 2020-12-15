@@ -1,0 +1,24 @@
+<h1>Customers#show</h1>
+
+<div class="profile">
+  <p>名前 (姓)</p>
+  <p><%= @customer.first_name %></p>
+  <p>名前 (名)</p>
+  <p><%= @customer.last_name %></p>
+  <p>フリガナ (姓)</p>
+  <p><%= @customer.first_name_kana %></p>
+  <p>フリガナ (名)</p>
+  <p><%= @customer.last_name_kana %></p>
+  <p>郵便番号</p>
+  <p><%= @customer.postcode %></p>
+  <p>住所</p>
+  <p><%= @customer.address %></p>
+  <p>電話番号</p>
+  <p><%= @customer.phone_number %></p>
+  <p>メールアドレス</p>
+  <p><%= @customer.email %></p>
+</div>
+
+  <% if @customer.id == current_customer.id %>
+    <p><%= link_to "プロフィール編集", edit_customer_path(@customer) %></p>
+  <% end %>
