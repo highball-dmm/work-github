@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   }
 
   root :to => "homes#top"
+
   get 'administrator' => "homes#administrator", :as => "homes_administrator"
 
-  resources :administrators
+  resources :shipping_addresses,only: [:index,:create,:edit,:update,:destroy]
   resources :customers
+  resources :administrators
 end
