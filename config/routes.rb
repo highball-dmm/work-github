@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   }
 
   root :to => "homes#top"
+  
+    resources :shipping_addresses,only: [:index,:create,:edit,:update,:destroy]
 end
