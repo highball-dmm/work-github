@@ -1,44 +1,36 @@
-<h1>カスタマーの編集ページ</h1>
 
-<%= form_with model:@customer, local:true do |f| %>
-<table>
-  <tr>
-    <td>
-      名前(姓)<br><%= f.text_field :first_name %>
-    </td>
-    <td>
-      名前 (名)<br><%= f.text_field :last_name %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      フリガナ (姓)<br><%= f.text_field :first_name_kana %>
-    </td>
-    <td>
-      フリガナ (名)<br><%= f.text_field :last_name_kana %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      郵便番号<br><%= f.text_field :postcode %>
-    </td>
-    <td>
-      住所<br><%= f.text_field :address %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      電話番号<br><%= f.text_field :phone_number %>
-    </td>
-    <td>
-      メールアドレス<br><%= f.email_field :email %>
-    </td>
-  </tr>
-  <tr>
-    <td><%= f.submit "保存" %></td>
-  </tr>
-  <tr>
-    <td><%= link_to "一覧へ戻る", administrators_path %></td>
-  </tr>
-</table>
+<h1>Customers#edit</h1>
+
+<%= form_with model: @customer, url: customer_path, local:true do |f| %>
+  <div class="form-group">
+    <label for="inputFirst_name">名前 (姓)</label><br>
+      <%= f.text_field :first_name, autofocus: true, id:"inputFirst_name"%>
+  </div>
+  <div class="form-group">
+    <label for="inputLast_name">名前 (名)</label><br>
+      <%= f.text_field :last_name, autofocus: true, id:"inputLast_name" %>
+  </div>
+  <div class="form-group">
+    <label for="inputFirst_name_kana">フリガナ (姓)</label><br>
+      <%= f.text_field :first_name_kana, autofocus: true, id:"inputFirst_name_kana"%>
+  </div>
+  <div class="form-group">
+    <label for="inputPostcode"></label>郵便番号<br>
+      <%= f.text_field :postcode, autofocus: true, id:"inputPostcode"%>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress"></label>住所<br>
+      <%= f.text_field :address, autofocus: true, id:"inputAddress"%>
+  </div>
+    <div class="form-group">
+    <label for="inputPhone_number"></label>電話番号<br>
+      <%= f.text_field :phone_number, autofocus: true, id:"inputPhone_number"%>
+  </div>
+    <div class="form-group">
+    <label for="inputEmail"></label>メールアドレス<br>
+      <%= f.text_field :email, autofocus: true, id:"inputEmail"%>
+  </div>
+  <div class="form-group">
+    <%= f.submit "変更を保存" %>
+  </div>
 <% end %>

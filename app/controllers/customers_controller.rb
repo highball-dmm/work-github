@@ -1,6 +1,16 @@
 class CustomersController < ApplicationController
+
   def show
     @customer = Customer.find(params[:id])
+  end
+
+
+  def hide
+    @customer = Customer.find(params[:id])
+    @customer.update(user_status: true)
+    reset_session
+    flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
+    redirect_to root_path
   end
 
   def edit
@@ -10,11 +20,13 @@ class CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     @customer.update(customer_params)
-    redirect_to request.referer
+    redirect_to customer_path(@customer.id)
   end
 
+
   private
+
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :postcode, :address, :phone_number, :email)
+    params.require(:customer).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :postcode, :address, :phone_number, :email,)
   end
 end
