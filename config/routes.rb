@@ -14,8 +14,10 @@ Rails.application.routes.draw do
 
   root :to => "homes#top"
 
+  get "/customers/quit" => "customers#quit", as: 'customers_quit'
+  put "/customers/out" => "customers#out", as: 'customers_out'
   resources :customers, only: [:show, :edit, :update]
-  put "/customers/:id/hide" => "customers#hide", as: 'customers_hide'
+
 
   get 'administrator' => "homes#administrator", :as => "homes_administrator"
 
