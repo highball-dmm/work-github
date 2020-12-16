@@ -17,11 +17,10 @@ Rails.application.routes.draw do
     registrations: 'customers/registrations'
   }
 
-  root :to => "homes#top"
+  get 'about' => 'customer/products#about'
+  root :to => 'customer/products#top'
+  get "/homes/top" => "homes#top"
 
-  get "/customers/quit" => "customers#quit", as: 'customers_quit'
-  put "/customers/out" => "customers#out", as: 'customers_out'
-  resources :customers, only: [:show, :edit, :update]
 
   resources :genres,only: [:index,:create,:edit,:update,:show]
   get 'administrator' => "homes#administrator", :as => "homes_administrator"
@@ -29,4 +28,23 @@ Rails.application.routes.draw do
   resources :shipping_addresses,only: [:index,:create,:edit,:update,:destroy]
   resources :administrators
 
+  scope module: :customer do
+    get 'customers/products' => 'customer/products#index'
+    get 'customers/products/:id' => 'customer/products#show'
+    get 'customers/edit' => 'customers#edit'
+    put 'customers' => 'customers#update'
+
+  	resource :customers,only: [:show] do
+  		collection do
+  	     get 'quit'
+  	     patch 'out'
+  	  end
+    end
+  end
+
+  resources :customers, only: [:show, :edit, :update]
+
+
 end
+
+
