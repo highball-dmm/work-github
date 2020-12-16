@@ -26,6 +26,8 @@ class Customers::SessionsController < Devise::SessionsController
       if (@customer.valid_password?(params[:customer][:password]) && (@customer.active_for_authentication? == false))
         redirect_to new_customer_session_path
       end
+    else
+      flash[:error] = "必須項目を入力してください。"
     end
   end
 
