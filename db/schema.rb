@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_12_16_043000) do
+=======
+ActiveRecord::Schema.define(version: 2020_12_16_065051) do
+>>>>>>> origin/develop
 
   create_table "administrators", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -20,8 +24,6 @@ ActiveRecord::Schema.define(version: 2020_12_16_043000) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "first_name"
-    t.string "last_name"
     t.index ["email"], name: "index_administrators_on_email", unique: true
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
   end
@@ -46,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_12_16_043000) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+<<<<<<< HEAD
   create_table "products", force: :cascade do |t|
     t.integer "genre_id"
     t.string "name"
@@ -53,6 +56,11 @@ ActiveRecord::Schema.define(version: 2020_12_16_043000) do
     t.integer "non_taxed_price"
     t.boolean "sale_status"
     t.string "products_image_id"
+=======
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.boolean "is_active", default: false
+>>>>>>> origin/develop
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
