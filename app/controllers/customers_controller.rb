@@ -1,12 +1,16 @@
 class CustomersController < ApplicationController
 
   def show
+    # @customer = current_customer
     @customer = Customer.find(params[:id])
   end
 
+  def quit
+  end
 
-  def hide
-    @customer = Customer.find(params[:id])
+
+  def out
+    @customer = current_customer
     @customer.update(user_status: true)
     reset_session
     flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"
