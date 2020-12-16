@@ -1,0 +1,23 @@
+<% provide(:title, "ジャンル編集") %>
+<h2 class="head-line title_h2 text-center" >ジャンル編集</h2>
+
+  <% if @genre.errors.any? %>
+    <%= render "layouts/error_messages", resource: @genre %>
+  <% end %>
+
+  <%= form_for @genre, :url => {:action => :update} do |f| %>
+  <div>
+    ジャンル
+      <%= f.text_field :name  %>
+      <%= f.radio_button :is_active, true %>
+      <%= f.label :is_active, "有効", {value: :true, style: "display: inline-block;"} %>
+      <%= f.radio_button :is_active, false %>
+      <%= f.label :is_active, "無効", {value: :false, style: "display: inline-block;"} %>
+      <%= f.submit "変更を保存する", class: "btn btn-info" %>
+    </div>
+  <% end %>
+<br>
+  <div class="col-xs-12">
+    <%= link_to "戻る", administrator_genres_path, class: "glyphicon glyphicon-home btn btn-info" %>
+  </div>
+© 2020 GitHub, Inc.

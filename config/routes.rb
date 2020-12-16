@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     passwords:     'administrators/passwords',
     registrations: 'administrators/registrations'
   }
+  
+  namespace :administrator do
+   resources :genres, only: [:index, :create, :edit, :update, :show]
+  end
+  
   devise_for :customers, controllers: {
     sessions:      'customers/sessions',
     passwords:     'customers/passwords',
@@ -18,7 +23,7 @@ Rails.application.routes.draw do
   put "/customers/out" => "customers#out", as: 'customers_out'
   resources :customers, only: [:show, :edit, :update]
 
-
+  resources :genres,only: [:index,:create,:edit,:update,:show]
   get 'administrator' => "homes#administrator", :as => "homes_administrator"
 
   resources :shipping_addresses,only: [:index,:create,:edit,:update,:destroy]
