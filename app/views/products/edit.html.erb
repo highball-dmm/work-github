@@ -1,0 +1,23 @@
+<h3>商品編集</h3>
+
+<%= form_with model: @product, local:true do |f| %>
+<table>
+  <tr>
+    <td>
+      <%= attachment_image_tag @product, :products_image, :fill, 100, 100, fallback: "no_image.jpg" %><br>
+      <%= f.attachment_field :products_image %>
+    </td>
+    <td>
+      商品名　　　　　　<%= f.text_field :name %><br>
+      商品説明　　　　　<%= f.text_area :products_explanation %><br>
+      ジャンル　　    　   <%= f.select :select, [["ケーキ", "cake"], ["クッキー", "cookie"]] %><br>
+      税抜価格　　    　   <%= f.text_field :non_taxed_price %><br>
+      販売ステータス　　<%= f.select :select, [["販売中", "sale"], ["売り切れ", "sold_out"]] %><br>
+    </td>
+    <td>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <%= f.submit "変更を保存" %>
+    </td>
+  </tr>
+</table>
+<% end %>
