@@ -16,6 +16,7 @@
       <li>
         <%= link_to "マイページ", customers_path(current_customer.id) %>
       </li>
+
     <% if administrator_signed_in? %>
     	<%= render 'layouts/header.admin' %>
     <% else %>
