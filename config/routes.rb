@@ -53,8 +53,19 @@ Rails.application.routes.draw do
   	     get 'quit'
   	     patch 'out'
   	  end
+  	  resources :cart_items,only: [:index,:update,:create,:destroy] do
+        collection do
+          delete '/' => 'cart_items#all_destroy'
+        end
+      end
     end
   end
+  
+  
+  
+  
+
+
 
   namespace :customer do
     resources :customers, only: [:edit, :update]

@@ -8,7 +8,6 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-<<<<<<< HEAD
 
     <% if customer_signed_in? %>
       <li>
@@ -17,12 +16,11 @@
       <li>
         <%= link_to "マイページ", customers_path(current_customer.id) %>
       </li>
-=======
     <% if administrator_signed_in? %>
     	<%= render 'layouts/header.admin' %>
->>>>>>> origin/develop
     <% else %>
     	<%= render 'layouts/login' %>
+    <% end %>
     <% end %>
 
     <%= yield %>
