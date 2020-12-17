@@ -1,0 +1,35 @@
+<h1>Customers#edit</h1>
+
+<%= form_with model: @customer, url: administrator_customer_path, local:true do |f| %>
+  <div class="form-group">
+    <label for="inputFirst_name">名前 (姓)</label><br>
+      <%= f.text_field :first_name, autofocus: true, id:"inputFirst_name"%>
+  </div>
+  <div class="form-group">
+    <label for="inputLast_name">名前 (名)</label><br>
+      <%= f.text_field :last_name, autofocus: true, id:"inputLast_name" %>
+  </div>
+  <div class="form-group">
+    <label for="inputFirst_name_kana">フリガナ (姓)</label><br>
+      <%= f.text_field :first_name_kana, autofocus: true, id:"inputFirst_name_kana"%>
+  </div>
+  <div class="form-group">
+    <label for="inputPostcode"></label>郵便番号<br>
+      <%= f.text_field :postcode, autofocus: true, id:"inputPostcode"%>
+  </div>
+  <div class="form-group">
+    <label for="inputAddress"></label>住所<br>
+      <%= f.text_field :address, autofocus: true, id:"inputAddress"%>
+  </div>
+    <div class="form-group">
+    <label for="inputPhone_number"></label>電話番号<br>
+      <%= f.text_field :phone_number, autofocus: true, id:"inputPhone_number"%>
+  </div>
+    <div class="form-group">
+    <label for="inputEmail"></label>メールアドレス<br>
+      <%= f.text_field :email, autofocus: true, id:"inputEmail"%>
+  </div>
+  <div class="form-group">
+    <%= f.submit "変更を保存" %>
+  </div>
+<% end %>
