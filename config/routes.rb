@@ -1,47 +1,41 @@
 Rails.application.routes.draw do
-  get 'products/index'
-  get 'products/show'
-  get 'products/edit'
-  get 'products/index'
-  get 'products/sho'
-  get 'products/edit'
-  get 'index/show'
-  get 'index/edit'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   devise_for :administrator, controllers: {
     sessions:      'administrators/sessions',
     passwords:     'administrators/passwords',
     registrations: 'administrators/registrations'
   }
-<<<<<<< HEAD
 
-  namespace :administrators do
-    resources :administrators
-  end
-
-=======
-  
   namespace :administrator do
-   resources :genres, only: [:index, :create, :edit, :update, :show]
+    resources :genres, only: [:index, :create, :edit, :update, :show]
   end
-  
->>>>>>> origin/develop
+
+  namespace :administrator do
+    resources :customers
+  end
+
   devise_for :customers, controllers: {
     sessions:      'customers/sessions',
     passwords:     'customers/passwords',
     registrations: 'customers/registrations'
   }
 
-<<<<<<< HEAD
+  namespace :customer do
+    resources :customers
+  end
+
+  namespace :administrator do
+    resources :products, only: [:index, :new, :create, :show, :edit, :update]
+  end
+
   resources :customers, only: [:show, :edit, :update]
   resources :shipping_addresses,only: [:index,:create,:edit,:update,:destroy]
   resources :products
-=======
+
   get 'about' => 'customer/products#about'
-  root :to => 'customer/products#top'
   get "/homes/top" => "homes#top"
->>>>>>> origin/develop
+  get "/administrator/top" => "administrator/products#top", :as => "administrator_customer_top"
+
 
   root :to => "homes#top"
 

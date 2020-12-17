@@ -1,6 +1,7 @@
-<%= link_to "＋", new_product_path %>
+<h3>商品一覧</h3><%= link_to "＋", new_administrator_product_path %>
 
 <table>
+  <tr></tr>
   <thead>
     <tr>
       <td>商品ID</td>
@@ -15,7 +16,7 @@
     <tr>
       <td><%= product.id %></td>
       <td>
-        <%= link_to product_path(product) do %>
+        <%= link_to administrator_product_path(product) do %>
           <%= product.name %>
         <% end %>
       </td>

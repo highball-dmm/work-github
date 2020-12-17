@@ -1,6 +1,6 @@
 <h3>商品新規登録</h3>
 
-<%= form_with model: @product, local:true do |f| %>
+<%= form_with model: @product, url: administrator_products_path, method: :POST, local:true do |f| %>
 <table>
   <tr>
     <td>
@@ -12,7 +12,7 @@
       商品説明<br><%= f.text_area :products_explanation %><br>
       ジャンル<br><%= f.select :select, [["ケーキ", "cake"], ["クッキー", "cookie"]] %><br>
       税抜価格<br><%= f.text_field :non_taxed_price %><br>
-      販売ステータス<br><%= f.select :select, [["販売中", "sale"], ["売り切れ", "sold_out"]] %><br>
+      販売ステータス<br><%= f.select :sale_status, [["販売中", "販売中"], ["売り切れ", "売り切れ"]] %><br>
     </td>
     <td>
       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
