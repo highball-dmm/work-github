@@ -1,8 +1,8 @@
 class Customer::CustomersController < ApplicationController
 
   def show
-    # @customer = current_customer
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
+    # @customer = Customer.find(params[:id])
   end
 
   def quit
@@ -18,13 +18,14 @@ class Customer::CustomersController < ApplicationController
   end
 
   def edit
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
+    # @customer = Customer.find(params[:id])
   end
 
   def update
     @customer = Customer.find(params[:id])
     @customer.update(customer_params)
-    redirect_to customer_path(@customer.id)
+    redirect_to customers_path(@customer.id)
   end
 
 
