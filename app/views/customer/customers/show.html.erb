@@ -1,43 +1,43 @@
+<h3><%= @customer.first_name %><%= @customer.last_name %>さんの会員詳細</h3>
 
-<h1>Customers#show</h1>
+<table class="table table-bordered table-condensed" >
+	<tbody>
+		<tr>
+			<td class="info col-xs-2">顧客ID</td>
+			<td class="text-left"><%= @customer.id %></td>
+		</tr>
+		<tr>
+			<td class="info">氏名</td>
+			<td class="text-left"><%= @customer.first_name %><%= @customer.last_name %></td>
+		</tr>
+		<tr>
+			<td class="info">フリガナ</td>
+			<td class="text-left"><%= @customer.first_name_kana %><%= @customer.last_name_kana %></td>
+		</tr>
+		<tr>
+			<td class="info">郵便番号</td>
+			<td class="text-left"><%= @customer.postcode %></td>
+		</tr>
+		<tr>
+			<td class="info">住所</td>
+			<td class="text-left"><%= @customer.address %></td>
+		</tr>
+		<tr>
+			<td class="info">電話番号</td>
+			<td class="text-left"><%= @customer.phone_number %></td>
+		</tr>
+		<tr>
+			<td class="info">メールアドレス</td>
+			<td class="text-left"><%= @customer.email %></td>
+		</tr>
+	</tbody>
+</table>
 
-			<table class="table table-bordered table-condensed" >
-				<tbody>
-					<tr>
-						<td class="info col-xs-2">名前 (姓)</td>
-						<td class="text-left"><%= @customer.first_name %></td>
-					</tr>
-					<tr>
-						<td class="info">名前 (名)</td>
-						<td class="text-left"><%= @customer.last_name %></td>
-					</tr>
-					<tr>
-						<td class="info">フリガナ (姓)</td>
-						<td class="text-left"><%= @customer.first_name_kana %></td>
-					</tr>
-					<tr>
-						<td class="info">フリガナ (名)</td>
-						<td class="text-left"><%= @customer.last_name_kana %></td>
-					</tr>
-					<tr>
-						<td class="info">郵便番号</td>
-						<td class="text-left"><%= @customer.postcode %></td>
-					</tr>
-					<tr>
-						<td class="info">住所</td>
-						<td class="text-left"><%= @customer.address %></td>
-					</tr>
-					<tr>
-						<td class="info">電話番号</td>
-						<td class="text-left"><%= @customer.phone_number %></td>
-					</tr>
-					<tr>
-						<td class="info">メールアドレス</td>
-						<td class="text-left"><%= @customer.email %></td>
-					</tr>
-				</tbody>
-			</table>
+<% if @customer == current_customer %>
+  <p><%= link_to "プロフィール編集", edit_customer_path(@customer) %></p>
+<% end %>
 
+<<<<<<< HEAD
   <% if @customer == current_customer %>
     <p><%= link_to "プロフィール編集", edit_customer_customer_path(@customer) %></p>
   <% end %>
@@ -45,3 +45,8 @@
   <% if customer_signed_in? && @customer.id == current_customer.id %>
         <%= link_to "退会", out_customers_path(current_customer), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
   <% end %>
+=======
+<% if customer_signed_in? && @customer.id == current_customer.id %>
+      <%= link_to "退会", customers_hide_path(current_customer), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
+<% end %>cu
+>>>>>>> origin/develop
