@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2020_12_16_065051) do
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.boolean "is_active", default: true
+<<<<<<< HEAD
+=======
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_12_16_065051) do
     t.integer "non_taxed_price"
     t.boolean "sale_status"
     t.string "products_image_id"
+>>>>>>> origin/develop
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     registrations: 'administrators/registrations'
   }
 
+
   namespace :administrator do
     resources :genres, only: [:index, :create, :edit, :update, :show]
   end
@@ -20,9 +21,6 @@ Rails.application.routes.draw do
     registrations: 'customers/registrations'
   }
 
-  namespace :customer do
-    resources :customers
-  end
 
   namespace :administrator do
     resources :products, only: [:index, :new, :create, :show, :edit, :update]
@@ -45,13 +43,12 @@ Rails.application.routes.draw do
   get "/customers/quit" => "customers#quit", as: 'customers_quit'
   put "/customers/out" => "customers#out", as: 'customers_out'
 
-  scope module: :customer do
+   scope module: :customer do
     get 'customers/products' => 'customer/products#index'
     get 'customers/products/:id' => 'customer/products#show'
-    get 'customers/edit' => 'customers#edit'
-    put 'customers' => 'customers#update'
 
-  	resource :customers,only: [:show] do
+
+  	resource :customers, only: [:show] do
   		collection do
   	     get 'quit'
   	     patch 'out'
@@ -59,8 +56,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :customers, only: [:show, :edit, :update]
-
+  namespace :customer do
+    resources :customers, only: [:edit, :update]
+  end
 
 end
 
