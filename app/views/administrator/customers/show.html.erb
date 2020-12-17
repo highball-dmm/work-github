@@ -33,10 +33,4 @@
 	</tbody>
 </table>
 
-<% if @customer == current_customer %>
-<p><%= link_to "プロフィール編集", edit_customer_path(@customer) %></p>
-<% end %>
-
-<% if customer_signed_in? && @customer.id == current_customer.id %>
-<%= link_to "退会", customers_out_path(current_customer), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
-<% end %>
+<p><%= link_to "プロフィール編集", edit_administrator_customer_path(@customer) %></p>
