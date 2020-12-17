@@ -1,0 +1,23 @@
+<h3>商品新規登録</h3>
+
+<%= form_with model: @product, url: administrator_products_path, method: :POST, local:true do |f| %>
+<table>
+  <tr>
+    <td>
+      <%= attachment_image_tag @product, :products_image, :fill, 100, 100, fallback: "no_image.jpg" %><br>
+      <%= f.attachment_field :products_image %>
+    </td>
+    <td>
+      商品名<br><%= f.text_field :name %><br>
+      商品説明<br><%= f.text_area :products_explanation %><br>
+      ジャンル<br><%= f.select :select, [["ケーキ", "cake"], ["クッキー", "cookie"]] %><br>
+      税抜価格<br><%= f.text_field :non_taxed_price %><br>
+      販売ステータス<br><%= f.select :sale_status, [["販売中", "販売中"], ["売り切れ", "売り切れ"]] %><br>
+    </td>
+    <td>
+      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      <%= f.submit "新規登録" %>
+    </td>
+  </tr>
+</table>
+<% end %>

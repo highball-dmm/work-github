@@ -1,0 +1,20 @@
+<h3>商品詳細</h3>
+
+<table>
+  <tr>
+    <td>
+      <%= attachment_image_tag @product, :products_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+    </td>
+    <td>
+      商品名  <%= @product.name %><br>
+      商品説明 <%= @product.products_explanation %><br>
+      ジャンル <%= %><br>
+      税抜価格 <%= @product.non_taxed_price %>円<br>
+      販売ステータス <%= @product.sale_status %><br>
+    </td>
+    <td>
+      <br><br><br><br><br><br><br><br>
+      <%= link_to "編集する", edit_administrator_product_path(@product) %>
+    </td>
+  </tr>
+</table>
