@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'orders/index'
+  get 'orders/show'
+  get 'order/index'
+  get 'order/show'
   devise_for :administrator, controllers: {
     sessions:      'administrators/sessions',
     passwords:     'administrators/passwords',
@@ -61,7 +65,9 @@ Rails.application.routes.draw do
 
   resources :customers, only: [:show, :edit, :update]
 
-
+  namespace :administrator do
+    resources :orders, only: [:index, :show, :update]
+  end
 end
 
 
