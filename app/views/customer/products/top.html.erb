@@ -8,10 +8,10 @@
 
 <h3>オススメ商品</h3>
   <% @products.first(5). each do |product| %>
-		 <%= render "product_each", product: product %>
+		 <%= render "products_each", product: product %>
 	<% end %>
 	<div>
-		<%= link_to "もっと見る", products_path %>
+		<%= link_to "もっと見る", administrator_products_path %>
 	</div>
 
 

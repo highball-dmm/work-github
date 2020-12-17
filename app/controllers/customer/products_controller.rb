@@ -2,7 +2,7 @@ class Customer::ProductsController < ApplicationController
 
     def top
         @products = Product.all.order(created_at: :asc)
-        @genres = Genre.all
+        # @genres = Genre.all
     end
 
     def about

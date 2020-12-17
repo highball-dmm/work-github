@@ -1,7 +1,6 @@
 
-<% if product.genre.is_active == true %>
   <div>
-    <%= link_to product_path(product.id) do %>
+    <%= link_to administrator_product_path(product.id) do %>
       <div>
         <%= attachment_image_tag(product, :products_image_id, size: "180x130", fallback: "no_image.jpg") %>
       </div>
@@ -14,4 +13,3 @@
       <p>売り切れ中</p>
     <% end %>
   </div>
-<% end %>
