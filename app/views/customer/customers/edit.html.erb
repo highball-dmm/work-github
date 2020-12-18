@@ -1,7 +1,7 @@
 
 <h1>Customers#edit</h1>
 
-<%= form_with model: @customer, url: customer_path, local:true do |f| %>
+<%= form_with model: @customer, url: customer_path(@customer), local:true do |f| %>
   <div class="form-group">
     <label for="inputFirst_name">名前 (姓)</label><br>
       <%= f.text_field :first_name, autofocus: true, id:"inputFirst_name"%>

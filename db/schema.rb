@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2020_12_17_061023) do
     t.integer "non_taxed_price"
     t.boolean "sale_status"
     t.string "products_image_id"
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

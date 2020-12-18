@@ -1,1 +1,24 @@
-<p>管理者側の注文履歴 一覧</p>
+<h3>注文履歴一覧</h3>
+
+<table>
+  <tr>
+    <thead>
+      <tr>
+        <td>購入日時</td>
+        <td>購入者</td>
+        <td>注文個数</td>
+        <td>注文ステータス</td>
+      </tr>
+    </thead>
+    <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+        <td><%= full_name(order.customer) %></td>
+        <td><%= order.cart_items.count %></td>
+        <td><%= order.order_status %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </tr>
+</table>
