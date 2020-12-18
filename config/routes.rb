@@ -27,9 +27,8 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :new, :create, :show, :edit, :update]
   end
 
-  resources :customers, only: [:show, :edit, :update]
+
   resources :shipping_addresses,only: [:index,:create,:edit,:update,:destroy]
-  resources :products
 
   get 'about' => 'customer/products#about'
   root :to => "customer/products#top"
@@ -45,8 +44,9 @@ Rails.application.routes.draw do
   put "/customers/out" => "customers#out", as: 'customers_out'
 
    scope module: :customer do
-    get 'customers/products' => 'customer/products#index'
-    get 'customers/products/:id' => 'customer/products#show'
+    get 'customers/products' => 'products#index'
+    get 'customers/products/:id' => 'products#show', as: 'customers_product'
+
 
 
   	resource :customers, only: [:show] do
@@ -58,8 +58,18 @@ Rails.application.routes.draw do
   end
 
   namespace :customer do
-    resources :customers, only: [:edit, :update]
+    resources :customers
+    resources :orders, only: [:new,:index,:show,:create] do
+      collection do
+        get 'log'
+        get 'thanx'
+      end
+    end
   end
+
+
+
+
 
 end
 

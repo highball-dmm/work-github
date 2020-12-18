@@ -10,18 +10,19 @@ class Customer::ProductsController < ApplicationController
 
     def index
         @genres = Genre.all
-        @products = Product.where(sale_status: true).page(params[:page]).per(8)
+        @products = Product.where(sale_status: true)
+
     end
 
     def show
         @products = Product.all
         @product = Product.find(params[:id])
-        @cart_item = CartItem.new
+        # @cart_item = CartItem.new
     end
 
 	private
 	def product_params
-		parmas.require(:product).permit(:products_image_id,:name, :products_explanation, :non_taxed_price, :sale_status)
+		parmas.require(:product).permit(:products_image_id,:name, :products_explanation, :non_taxed_price, :sale_status,)
 	end
 
 end
