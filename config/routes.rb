@@ -26,8 +26,9 @@ Rails.application.routes.draw do
   namespace :administrator do
     resources :products, only: [:index, :new, :create, :show, :edit, :update]
   end
-
-  resources :customers, only: [:show, :edit, :update]
+ scope module: :customer do
+    resources :customers, only: [:show, :edit, :update]
+ end
   resources :shipping_addresses,only: [:index,:create,:edit,:update,:destroy]
   resources :products
 
@@ -53,8 +54,8 @@ Rails.application.routes.draw do
   		collection do
   	     get 'quit'
   	     patch 'out'
-  	  end
-  	  resources :cart_items,only: [:index,:update,:create,:destroy] do
+  	     end
+  	   resources :cart_items,only: [:index,:update,:create,:destroy] do
         collection do
           delete '/' => 'cart_items#all_destroy'
         end
@@ -62,14 +63,9 @@ Rails.application.routes.draw do
     end
   end
   
-  
-  
-  
-
-
 
   namespace :customer do
-    resources :customers, only: [:edit, :update]
+    resources :customers
   end
 
 end
