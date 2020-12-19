@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   devise_for :administrator, controllers: {
     sessions:      'administrators/sessions',
     passwords:     'administrators/passwords',
@@ -24,7 +23,11 @@ Rails.application.routes.draw do
 
 
   namespace :administrator do
-    resources :products, only: [:index, :new, :create, :show, :edit, :update]
+    resources :products
+  end
+
+  scope module: :customer do
+    resources :customers
   end
  
 
@@ -63,13 +66,14 @@ Rails.application.routes.draw do
     end
   end
   
-
-
-  
-
   namespace :customer do
     resources :customers
   end
+
+  # namespace :customer do
+  #   resources :customers
+  # end
+
 
 end
 

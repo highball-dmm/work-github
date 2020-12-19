@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2020_12_17_054627) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_administrators_on_email", unique: true
     t.index ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
   end
@@ -55,6 +57,19 @@ ActiveRecord::Schema.define(version: 2020_12_17_054627) do
   create_table "genres", force: :cascade do |t|
     t.string "name"
     t.boolean "is_active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "shipping"
+    t.integer "billing"
+    t.integer "payment_method"
+    t.string "name"
+    t.string "shipping_address"
+    t.integer "order_status"
+    t.string "shipping_postal_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

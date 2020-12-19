@@ -6,6 +6,7 @@
     <tr>
       <td>商品ID</td>
       <td>商品名</td>
+      <td>商品説明</td>
       <td>税抜価格</td>
       <td>ジャンル</td>
       <td>ステータス</td>
@@ -14,7 +15,8 @@
   <tbody>
   <% @products.each do |product| %>
     <tr>
-      <td><%= product.id %></td>
+      <td>
+        <%= product.id %>
       <td>
         <%= link_to administrator_product_path(product) do %>
           <%= product.name %>
@@ -22,7 +24,7 @@
       </td>
       <td><%= product.products_explanation %></td>
       <td><%= product.non_taxed_price %></td>
-      <td><%= product.genre_id %></td>
+      <td><%= product.genre.name %></td>
       <td><%= product.sale_status %></td>
     </tr>
   <% end %>

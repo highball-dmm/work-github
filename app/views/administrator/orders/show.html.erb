@@ -1,0 +1,70 @@
+<p>注文履歴詳細</p>
+
+
+<table>
+  <tr>
+    <td>購入者</td>
+    <td>
+      <%= link_to customer_customer_path(@customer) do %>
+        <%= @order.name %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>配送先</td>
+    <td><%= @order.shipping_address %></td>
+  </tr>
+  <tr>
+    <td>支払方法</td>
+    <td><%= @order.payment_method %></td>
+  </tr>
+  <%= form_with model: @order, local:true do |f| %>
+  <tr>
+    <td>注文ステータス</td>
+    <td><%= f.select :order_status, [["入金待ち", "入金待ち"], ["入金済み", "入金済み"], ["製作中", "制作中"], ["発送準備中", "発送準備中"], ["発送済み", "発送済み"]] %></td>
+    <td><%= f.submit "更新" %></td>
+  </tr>
+  <% end %>
+</table>
+
+
+<table>
+  <thead>
+    <tr>
+      <td>商品名</td>
+      <td>単価(税込)</td>
+      <td>数量</td>
+      <td>小計</td>
+      <td>製作ステータス</td>
+      <td></td>
+    </tr>
+  </thead>
+  <%= @cart_items.each do |cart_item| %>
+  <tbody>
+    <tr>
+      <tr><%= curt_item.product.name %></tr>
+      <tr><%= cart_item.products.non_taxed_price %></tr>
+      <tr><%= cart_item.item_quantuty %></tr>
+      <tr><%= %></tr>
+      <!--↑sub_priceが入る-->
+      <tr></tr>
+      <%= form_with model: @order, method: :patch do |f| %>
+        <tr><%= f.select :order_status, [["着手不可", "0"], ["制作待ち", "1"], ["製作中", "2"], ["制作完了", "3"]] %></tr>
+        <tr><%= f.submit "更新" %></tr>
+      <% end %>
+    </tr>
+  </tbody>
+  <%= end %>
+
+  <table>
+    <tr>
+      <td>商品合計 <%=  %>円</td>
+    </tr>
+    <tr>
+      <td>送料 <%= %>円</td>
+    </tr>
+    <tr>
+      <td>請求金額合計 <%= %>円</td>
+    </tr>
+  </table>
+</table>
