@@ -10,8 +10,9 @@
     <td>
       商品名　　　　　　<%= f.text_field :name %><br>
       商品説明　　　　　<%= f.text_area :products_explanation %><br>
-      ジャンル　　    　   <%= f.select :select, [["ケーキ", "cake"], ["クッキー", "cookie"]] %><br>
-      税抜価格　　    　   <%= f.text_field :non_taxed_price %><br>
+      ジャンル　　    　<%= f.select :genre_id %>
+                            <!--↑追加したジャンルのデータを反映させたい-->
+      税抜価格　　    　<%= f.text_field :non_taxed_price %><br>
       販売ステータス　　<%= f.select :sale_status, [["販売中", "販売中"], ["売り切れ", "売り切れ"]] %><br>
     </td>
     <td>

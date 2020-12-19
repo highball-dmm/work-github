@@ -10,6 +10,16 @@ class ApplicationController < ActionController::Base
       end
    end
 
+    def after_sign_out_path_for(resource_or_scope)
+      case resource
+      when Administrator
+        root_path
+      when Customer
+        root_path
+      end
+    end
+
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected

@@ -13,7 +13,11 @@
     <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+        <td>
+          <%= link_to administrator_order_path(order) do %>
+            <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          <% end %>
+        </td>
         <td><%= full_name(order.customer) %></td>
         <td><%= order.cart_items.count %></td>
         <td><%= order.order_status %></td>

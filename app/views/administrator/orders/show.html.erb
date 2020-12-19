@@ -42,19 +42,23 @@
   <%= @cart_items.each do |cart_item| %>
   <tbody>
     <tr>
-      <tr><%= curt_item.product.name %></tr>　　　　　　　　　　次はここから
-      <tr><%= @order.products.non_taxed_price %></tr>
-      <tr><%=  %></tr>
+      <tr><%= curt_item.product.name %></tr>
+      <tr><%= cart_item.products.non_taxed_price %></tr>
+      <tr><%= cart_item.item_quantuty %></tr>
+      <tr><%= %></tr>
+      <!--↑sub_priceが入る-->
       <tr></tr>
-      <tr><%= @order.select :order_status, [["着手不可", "着手不可"], ["制作待ち", "制作待ち"], ["製作中", "制作中"], ["制作完了", "制作完了"]] %></tr>
-      <tr><%= link_to "更新", administrator_order_path(@order), method: :patch %></tr>
+      <%= form_with model: @order, method: :patch do |f| %>
+        <tr><%= f.select :order_status, [["着手不可", "0"], ["制作待ち", "1"], ["製作中", "2"], ["制作完了", "3"]] %></tr>
+        <tr><%= f.submit "更新" %></tr>
+      <% end %>
     </tr>
   </tbody>
   <%= end %>
 
   <table>
     <tr>
-      <td>商品合計 <%= %>円</td>
+      <td>商品合計 <%=  %>円</td>
     </tr>
     <tr>
       <td>送料 <%= %>円</td>

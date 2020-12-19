@@ -5,13 +5,14 @@
 会員でない方も商品の閲覧はできますが、
 購入には会員登録が必要になります。</p>
 
+<%= link_to "管理者はこちらから", homes_administrator_path %>
 
 <h3>オススメ商品</h3>
   <% @products.first(5). each do |product| %>
-		 <%= render "product_each", product: product %>
+		 <%= render "products_each", product: product %>
 	<% end %>
 	<div>
-		<%= link_to "もっと見る", products_path %>
+		<%= link_to "もっと見る", administrator_products_path %>
 	</div>
 
 
