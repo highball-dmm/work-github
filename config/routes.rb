@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
 
   namespace :administrator do
-    resources :products, only: [:index, :new, :create, :show, :edit, :update]
+    resources :products
   end
 
   scope module: :customer do

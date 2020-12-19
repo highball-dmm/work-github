@@ -4,11 +4,12 @@ class Administrator::ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @genres = Genre.all
   end
 
   def create
     product = Product.new(product_params)
-    product.save
+    product.save!
     redirect_to administrator_products_path
   end
 
@@ -22,11 +23,18 @@ class Administrator::ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+    @genres = Genre.all
   end
 
   def update
     product = Product.find(params[:id])
     product.update(product_params)
+    redirect_to administrator_products_path
+  end
+
+  def destroy
+    product = Product.find(params[:id])
+    product.destroy
     redirect_to administrator_products_path
   end
 
