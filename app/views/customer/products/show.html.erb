@@ -3,11 +3,19 @@
 <%= attachment_image_tag(@product, :products_image_id, size: "340x220", fallback: "no_image.jpg" ) %>
 <h2><%= @product.name %></h2>
 <%= @product.products_explanation %>
+<<<<<<< HEAD
 <p>¥<%= @product.non_taxed_price.to_s(:delimited) %>
     <span class="tax">(税抜)</span>
 </p>
 
 <% if @product.sale_status == true %>
+=======
+    <span class="tax">(税込)</span>
+</p>
+
+
+  <% if @product.sale_status == true %>
+>>>>>>> origin/develop
   <% if @product.genre.is_active == true %>
     <%= form_with :model => @cart_item, url: customers_cart_items_path, method: :post, local: true do |f| %>
       <%= f.hidden_field :item_id, value: @product.id %>
@@ -19,4 +27,8 @@
   <% end %>
 <% elsif @product.sale_status == false %>
 <h3>売り切れ中</h3>
+<<<<<<< HEAD
 <% end %>
+=======
+<% end %>
+>>>>>>> origin/develop

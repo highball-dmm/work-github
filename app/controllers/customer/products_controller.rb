@@ -10,8 +10,12 @@ class Customer::ProductsController < ApplicationController
 
     def index
         @genres = Genre.all
+<<<<<<< HEAD
         @products = Product.where(sale_status: true)
 
+=======
+        @products = Product.where(sale_status: true)#.page(params[:page]).per(8)
+>>>>>>> origin/develop
     end
 
     def show
