@@ -5,7 +5,7 @@
         <div id="error">
         <%= render "layouts/error_messages", resource: @shipping_address %>
         </div>
-        <%= form_with model: @shipping_address, :url => shipping_addresses_path, local:true do |f| %><%# 参考サイトとの変更箇所あり %> 
+        <%= form_with model: @shipping_address, :url => customer_shipping_addresses_path, local:true do |f| %><%# 参考サイトとの変更箇所あり %> 
             <div class="shipping_addres col-xs-10">
                 <div class="form-group col-xs-12">
                     <%= f.label :"郵便番号(ハイフンなし)" ,class: "col-xs-3 control-label" %>
