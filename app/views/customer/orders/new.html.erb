@@ -2,52 +2,51 @@
 <h1>注文情報入力</h1>
 
   <%= form_with :model => @order, url:log_customer_orders_path, method: :post, local: true  do |f| %>
-    <h2>支払い方法</h2>
-    <%= f.radio_button :payment_method, :"クレジットカード", checked: true %>
-    <span>&nbsp;クレジットカード</span>
-    <%= f.radio_button :payment_method, :"銀行振込" %>
-    <span>&nbsp;銀行振り込み</span>
+        <h2>支払い方法</h2>
+        <%= f.radio_button :payment_method, :"クレジットカード", checked: true %>
+        <span>&nbsp;クレジットカード</span>
+        <%= f.radio_button :payment_method, :"銀行振込" %>
+        <span>&nbsp;銀行振り込み</span>
 
 
-  <h2>お届け先</h2>
+      <h2>お届け先</h2>
 
-  <span>&nbsp;ご自身の住所</span><br>
-    <%= "#{current_customer.postcode} #{current_customer.address}" %>
-    <br>
-    <%= "#{current_customer.first_name} #{current_customer.last_name}" %>
+      <span>&nbsp;ご自身の住所</span><br>
+        <%= "#{current_customer.postcode} #{current_customer.address}" %>
+        <br>
+        <%= "#{current_customer.first_name} #{current_customer.last_name}" %>
 
 
-    <br>
-    <% if @shipping_addresses != [] %>
-    <%= f.radio_button :addresses, "shipping_addresses" %>
-    <span>&nbsp;登録済住所から選択</span><br>
-     <%= f.collection_select(:shipping_address_id, @shipping_addresses, :id, :order_address) %>
+        <br>
+        <% if @shipping_addresses != [] %>
+        <%= f.radio_button :addresses, "shipping_addresses" %>
+        <span>&nbsp;登録済住所から選択</span><br>
+         <%= f.collection_select(:shipping_address_id, @shipping_addresses, :id, :order_address) %>
+        <% end %>
+
+
+        <%= f.radio_button :addresses, "new_address" %>
+        <span>&nbsp;新しいお届け先</span><br>
+        <%= f.label :"郵便番号(ハイフンなし)" %>
+        <%= f.text_field :postcode %>
+        <%= f.label :"住所" %>
+        <%= f.text_field :address %>
+        <%= f.label :"宛名" %>
+        <%= f.text_field :name %>
+
+          <%= link_to customers_cart_items_path do %>
+          カート(<%= current_customer.cart_items.count %>)へ戻る
+          <% end %>
+          <%= f.submit "確認画面へ進む" %>
     <% end %>
-
-
-    <%= f.radio_button :addresses, "new_address" %>
-    <span>&nbsp;新しいお届け先</span><br>
-    <%= f.label :"郵便番号(ハイフンなし)" %>
-    <%= f.text_field :postcode %>
-    <%= f.label :"住所" %>
-    <%= f.text_field :address %>
-    <%= f.label :"宛名" %>
-    <%= f.text_field :name %>
-
-    <%= link_to customers_cart_items_path do %>
-    カート(<%= current_customer.cart_items.count %>)へ戻る
-    <% end %>
-    <%= f.submit "確認画面へ進む" %>
-     <% end %>
-    <% else %>
       <p>お客様のショッピングカートに商品はありませんので注文情報の入力ができません。</p>
       <p><%= link_to "商品一覧", products_path %>から商品をお探し下さい。</p>
-    <% end %>
 
 
 
 
- <% end %>
+
+
 
 
 

@@ -1,1 +1,68 @@
 <h1>orders#log</h1>
+
+
+<h2>注文情報確認</h2>
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税抜)</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart_items.each do |cart| %>
+    <tr>
+      <td> <%= attachment_image_tag( cart.product, :image, size: "60x50", fallback: "no_image.jpg") %>
+      <%= cart.product.name %></td>
+      <td>
+         ¥<%= non_taxed_price(cart.product.non_taxed_price).to_s(:delimited) %>
+      </td>
+      <td>
+        <%= cart.item_quantity %>
+      </td>
+      <td>
+        ¥<%= sub_price(cart).to_s(:delimited) %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table>
+  <tr>
+    <th>送料</th>
+    <td><%= @order.shipping %></td>
+  </tr>
+  <tr>
+    <th>商品合計</th>
+    <td><%= total_price(@cart_items).to_s(:delimited) %></td>
+  </tr>
+  <tr>
+    <th>請求金額</th>
+    <td><%= billing(@order).to_s(:delimited) %></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <th>支払方法</th>
+    <td><%= @order.payment_method %></td>
+  </tr>
+  <tr>
+    <th>お届け先</th>
+    <td><%= "#{@order.shipping_postal_code} #{@order.shipping address} #{@order.name}" %></td>
+  </tr>
+</table>
+
+  <%= form_with model: @order, url: customers_orders_path, method: :post, local: true do |f| %>
+    <%= f.hidden_field :shipping_postal_code %>
+    <%= f.hidden_field :shipping address %>
+    <%= f.hidden_field :name %>
+    <%= f.hidden_field :payment_method %>
+    <%= f.hidden_field :total_price %>
+    <%= f.hidden_field :shipping, value: @shipping %>
+    <%= link_to "注文情報入力へ戻る", new_customers_order_path, data: {"turbolinks" => false} %>
+    <%= f.submit "購入を確定する" %>
+  <% end %>
