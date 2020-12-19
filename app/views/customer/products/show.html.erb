@@ -2,21 +2,20 @@
 
 <h2><%= @product.name %></h2>
 <%= @product.products_explanation %>
-<p>¥<%= tax_price(@product.non_taxed_price).to_s(:delimited) %>
     <span class="tax">(税込)</span>
 </p>
 
 
-  <%#  <% if @product.sale_status == true %>
-  <%#    <% if @product.genre.is_active == true %>
-  <%#     <%= form_for(@cart_item , url: customers_cart_items_path, method: :post) do |f| %>
-  <%#        <%= f.hidden_field :product_id, value: @product.id %>
-  <%#        <%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
-  <%#        <%= f.submit "カートに入れる", class: "glyphicon glyphicon-shopping-cart btn btn-primary" %>
-  <%#      <% end %>
-  <%#    <% else %>
-  <%#      <h3>売り切れ中</h3>
-       <% end %>
-  <%#    <% elsif @product.is_sale == false %>
-  <%#      <h3>売り切れ中</h3>
-  <%#    <% end %>
+  <% if @product.sale_status == true %>
+  <% if @product.genre.is_active == true %>
+    <%= form_with :model => @cart_item, url: customers_cart_items_path, method: :post, local: true do |f| %>
+      <%= f.hidden_field :item_id, value: @product.id %>
+      <%= f.select :item_quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
+      <%= f.submit "カートに入れる" %>
+    <% end %>
+  <% else %>
+  <h3>売り切れ中</h3>
+  <% end %>
+<% elsif @product.sale_status == false %>
+<h3>売り切れ中</h3>
+<% end %>
