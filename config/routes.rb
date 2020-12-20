@@ -26,11 +26,6 @@ Rails.application.routes.draw do
     resources :products
   end
 
-  scope module: :customer do
-    resources :customers
-  end
- 
-
   get 'about' => 'customer/products#about'
   root :to => "customer/products#top"
   get "/homes/top" => "homes#top"
@@ -43,12 +38,12 @@ Rails.application.routes.draw do
   get 'administrator' => "administrator#top", :as => "administrator_top"
   get "/customers/quit" => "customers#quit", as: 'customers_quit'
   put "/customers/out" => "customers#out", as: 'customers_out'
-  
- 
+
+
    scope module: :customer do
     get 'customers/products' => 'products#index'
     get 'customers/products/:id' => 'products#show',as: 'customers_product'
-   
+
      scope :customers do
        resources :cart_items,only: [:index,:update,:create,:destroy] do
          collection do
@@ -65,14 +60,14 @@ Rails.application.routes.draw do
   	     end
     end
   end
-  
+
   namespace :customer do
     resources :customers
   end
 
-  # namespace :customer do
-  #   resources :customers
-  # end
+  namespace :administrator do
+    resources :orders
+  end
 
 
 end

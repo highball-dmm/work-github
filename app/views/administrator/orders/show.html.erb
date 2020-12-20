@@ -44,6 +44,7 @@
     <tr>
       <tr><%= curt_item.product.name %></tr>
       <tr><%= cart_item.products.non_taxed_price %></tr>
+      <!--tax-priceが入る-->
       <tr><%= cart_item.item_quantuty %></tr>
       <tr><%= %></tr>
       <!--↑sub_priceが入る-->
@@ -59,12 +60,15 @@
   <table>
     <tr>
       <td>商品合計 <%=  %>円</td>
+      <!--total_priceが入る-->
     </tr>
     <tr>
       <td>送料 <%= %>円</td>
+      <!--postage.to_sが入る-->
     </tr>
     <tr>
       <td>請求金額合計 <%= %>円</td>
+      <!--total_priceが入る-->
     </tr>
   </table>
 </table>
