@@ -1,6 +1,4 @@
 class Order < ApplicationRecord
-<<<<<<< HEAD
-=======
 
     belongs_to :customer
     has_many :cart_items, dependent: :destroy
@@ -15,5 +13,4 @@ class Order < ApplicationRecord
 
     # end
 
->>>>>>> origin/develop
 end

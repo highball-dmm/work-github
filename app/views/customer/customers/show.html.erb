@@ -35,7 +35,7 @@
 
 
   <% if @customer == current_customer %>
-    <p><%= link_to "プロフィール編集", edit_customer_path(@customer) %></p>
+    <p><%= link_to "プロフィール編集", edit_customer_customer_path(@customer) %></p>
   <% end %>
 
   <% if customer_signed_in? && @customer.id == current_customer.id %>

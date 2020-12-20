@@ -6,16 +6,18 @@ class Customer::OrdersController < ApplicationController
   end
 
   def log
-    @cart_items = current_cart
-		@order = Order.new(customer: current_customer,payment_method: params[:order][:payment_method])
-
-    # total_priceに請求額を代入
-    @order.total_price = billing(@order)
+    #orderのテーブルにあるカラムに情報を入れている
+    @cart_items = CartItem.where(customer_id: current_customer.id)
+    # binding.pry
+		@order = Order.new(customer_id: current_customer.id, payment_method: params[:order][:payment_method])
+    @order.billing =  0
+    @order.shipping = 800
+    @order.order_status = 0
 
     # addressにresidenceの値がはいっていれば
     if params[:order][:addresses] == "residence"
-      @order.postal_code = current_customer.postcode
-      @order.address = current_customer.residence
+      @order.shipping_postal_code = current_customer.postcode
+      @order.address = current_customer.address
       @order.name = current_customer.last_name + current_customer.first_name
 
     # addressにshipping_addressesの値がはいっていれば
@@ -90,6 +92,7 @@ class Customer::OrdersController < ApplicationController
   def to_log
     redirect_to customers_cart_items_path if params[:id] == "log"
   end
+
 
 
 
