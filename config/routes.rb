@@ -26,10 +26,6 @@ Rails.application.routes.draw do
     resources :products
   end
 
-  scope module: :customer do
-    resources :customers
-  end
- 
 
   get 'about' => 'customer/products#about'
   root :to => "customer/products#top"
@@ -41,15 +37,13 @@ Rails.application.routes.draw do
   resources :genres,only: [:index,:create,:edit,:update,:show]
   get 'administrator' => "homes#administrator", :as => "homes_administrator"
   get 'administrator' => "administrator#top", :as => "administrator_top"
-  get "/customers/quit" => "customers#quit", as: 'customers_quit'
-  put "/customers/out" => "customers#out", as: 'customers_out'
-  
- 
+
+
    scope module: :customer do
     get 'customers/products' => 'products#index'
     get 'customers/products/:id' => 'products#show',as: 'customers_product'
-   
-     scope :customers do
+
+      scope :customers do
        resources :cart_items,only: [:index,:update,:create,:destroy] do
          collection do
            delete '/' => 'cart_items#all_destroy'
@@ -64,17 +58,29 @@ Rails.application.routes.draw do
   	     patch 'out'
   	     end
     end
+
+
+
+
   end
-  
+
   namespace :customer do
     resources :customers
   end
 
-  # namespace :customer do
-  #   resources :customers
-  # end
+  namespace :customer do
+    resources :orders, only: [:new,:index,:show,:create] do
+      collection do
+        get 'log'
+        get 'thanx'
+      end
+    end
+  end
+
 
 
 end
+
+
 
 
