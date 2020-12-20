@@ -3,7 +3,7 @@
 <table>
   <tr>
     <td>
-      <%= attachment_image_tag @product, :products_image, :fill, 100, 100, fallback: "no_image.jpg" %>
+      <%= attachment_image_tag @product, :products_image, size: "100x100", fallback: "no_image.jpg" %>
     </td>
     <td>
       商品名  <%= @product.name %><br>

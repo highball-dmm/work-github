@@ -4,7 +4,14 @@
 	<tbody>
 		<tr>
 			<td class="info col-xs-2">顧客ID</td>
-			<td class="text-left"><%= @customer.id %></td>
+			<td class="text-left">
+				<%= @customer.id %>
+				<% if @customer.user_status == false %>
+		          有効会員
+		        <% else %>
+		          退会済
+        		<% end %><%=  %>
+			</td>
 		</tr>
 		<tr>
 			<td class="info">氏名</td>

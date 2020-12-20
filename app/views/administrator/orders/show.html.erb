@@ -43,11 +43,9 @@
   <tbody>
     <tr>
       <tr><%= curt_item.product.name %></tr>
-      <tr><%= cart_item.products.non_taxed_price %></tr>
-      <!--tax-priceが入る-->
+      <tr><%= (cart_item.products.non_taxed_price * 1.1) %></tr>
       <tr><%= cart_item.item_quantuty %></tr>
-      <tr><%= %></tr>
-      <!--↑sub_priceが入る-->
+      <tr><%= (cart_item.products.non_taxed_price * 1.1) * cart_item.item_quantuty %></tr>
       <tr></tr>
       <%= form_with model: @order, method: :patch do |f| %>
         <tr><%= f.select :order_status, [["着手不可", "0"], ["制作待ち", "1"], ["製作中", "2"], ["制作完了", "3"]] %></tr>
@@ -59,16 +57,13 @@
 
   <table>
     <tr>
-      <td>商品合計 <%=  %>円</td>
-      <!--total_priceが入る-->
+      <td>商品合計 <%= @order.billing %>円</td>
     </tr>
     <tr>
-      <td>送料 <%= %>円</td>
-      <!--postage.to_sが入る-->
+      <td>送料 <%= @order.shipping %>円</td>
     </tr>
     <tr>
-      <td>請求金額合計 <%= %>円</td>
-      <!--total_priceが入る-->
+      <td>請求金額合計 <%= (@order.billing + @order.shipping) %>円</td>
     </tr>
   </table>
 </table>

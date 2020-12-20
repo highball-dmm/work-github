@@ -1,15 +1,14 @@
+<div>
+  <%= link_to customers_product_path(product.id) do %>
+    <div>
+      <%= attachment_image_tag product, :products_image, size: "180x130", fallback: "no_image.jpg" %>
+    </div>
+    <p><%= product.name %></p>
+  <% end %>
 
-  <div>
-    <%= link_to customers_product_path(product.id) do %>
-      <div>
-        <%= attachment_image_tag(product, :products_image_id, size: "180x130", fallback: "no_image.jpg") %>
-      </div>
-      <p><%= product.name %></p>
-    <% end %>
-
-    <% if product.sale_status == true %>
-      <p>¥<%= product.non_taxed_price.to_s(:delimited) %></p>
-    <% elsif product.sale_status == false %>
-      <p>売り切れ中</p>
-    <% end %>
-  </div>
+  <% if product.sale_status == true %>
+    <p>¥<%= product.non_taxed_price.to_s(:delimited) %></p>
+  <% elsif product.sale_status == false %>
+    <p>売り切れ中</p>
+  <% end %>
+</div>

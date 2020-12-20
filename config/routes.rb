@@ -69,6 +69,14 @@ Rails.application.routes.draw do
     resources :orders
   end
 
+  namespace :customer do
+    resources :orders, only: [:new, :index, :show, :create] do
+      collection do
+        get 'log'
+        get 'thanx'
+      end
+    end
+  end
 
 end
 

@@ -20,11 +20,12 @@
       </td>
       <td><%= customer.email %></td>
       <td>
-      <% if customer.is_active == true %>
-        <p>退会済み</p>
-      <% else %>
-        <p>有効</p>
-      <% end %>
+        <%= customer.id %>
+        <% if customer.user_status == false %>
+          有効
+        <% else %>
+          退会
+        <% end %>
       </td>
     </tr>
   <% end %>
