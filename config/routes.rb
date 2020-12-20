@@ -26,9 +26,7 @@ Rails.application.routes.draw do
     resources :products
   end
 
-  scope module: :customer do
-    resources :customers
-  end
+  
  
 
   get 'about' => 'customer/products#about'
