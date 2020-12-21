@@ -29,7 +29,7 @@ class Customer::OrdersController < ApplicationController
 
     # addressにnew_addressの値がはいっていれば
     elsif params[:order][:addresses] == "new_address"
-      @order.postcode = params[:order][:postcode]
+      @order.shipping_postal_code = params[:order][:postcode]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
       @ship = "1"
@@ -46,7 +46,7 @@ class Customer::OrdersController < ApplicationController
     @order = current_customer.orders.new(order_params)
     @order.save
     flash[:notice] = "ご注文が確定しました。"
-    redirect_to thanx_customers_orders_path
+    redirect_to thanx_customer_orders_path
 
     # もし情報入力でnew_addressの場合ShippingAddressに保存
     if params[:order][:ship] == "1"

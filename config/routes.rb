@@ -33,7 +33,6 @@ Rails.application.routes.draw do
   get "/administrator/top" => "administrator/products#top", :as => "administrator_customer_top"
 
 
-
   resources :genres,only: [:index,:create,:edit,:update,:show]
   get 'administrator' => "homes#administrator", :as => "homes_administrator"
   get 'administrator' => "administrator#top", :as => "administrator_top"
@@ -80,7 +79,7 @@ Rails.application.routes.draw do
   namespace :customer do
     resources :orders, only: [:new, :index, :show, :create] do
       collection do
-        get 'log'
+        post 'log'
         get 'thanx'
       end
     end
