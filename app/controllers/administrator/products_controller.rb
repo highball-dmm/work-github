@@ -9,7 +9,7 @@ class Administrator::ProductsController < ApplicationController
 
   def create
     product = Product.new(product_params)
-    product.save!
+    product.save
     redirect_to administrator_products_path
   end
 
