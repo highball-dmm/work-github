@@ -1,10 +1,10 @@
 <h1>注文情報入力</h1>
 
-  <%= form_with :model => @order, url: log_customer_orders_path, method: :get, local: true  do |f| %>
+  <%= form_with :model => @order, url: log_customer_orders_path, method: :post, local: true  do |f| %>
         <h2>支払い方法</h2>
-        <%= f.radio_button :payment_method, :"クレジットカード", checked: true %>
+        <%= f.radio_button :payment_method, :"0", checked: true %>
         <span>&nbsp;クレジットカード</span>
-        <%= f.radio_button :payment_method, :"銀行振込" %>
+        <%= f.radio_button :payment_method, :"1" %>
         <span>&nbsp;銀行振り込み</span>
 
 

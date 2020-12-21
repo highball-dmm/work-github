@@ -1,4 +1,5 @@
 class Customer::OrdersController < ApplicationController
+  include ApplicationHelper
 
   def new
     @order = Order.new
@@ -10,7 +11,14 @@ class Customer::OrdersController < ApplicationController
     @cart_items = CartItem.where(customer_id: current_customer.id)
     # binding.pry
 		@order = Order.new(customer_id: current_customer.id, payment_method: params[:order][:payment_method])
-    @order.billing =  0
+    @sum = 0
+    @cart_items.each do |cart_item|
+      (cart_item.product.non_taxed_price * 1.1 * cart_item.item_quantity).floor
+      @sum += (cart_item.product.non_taxed_price * 1.1 * cart_item.item_quantity).floor
+    end
+    @order.billing =  @sum
+
+
     @order.shipping = 800
     @order.order_status = 0
 
@@ -29,7 +37,7 @@ class Customer::OrdersController < ApplicationController
 
     # addressにnew_addressの値がはいっていれば
     elsif params[:order][:addresses] == "new_address"
-      @order.postcode = params[:order][:postcode]
+      @order.shipping_postal_code = params[:order][:postcode]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
       @ship = "1"
@@ -43,10 +51,10 @@ class Customer::OrdersController < ApplicationController
   end
 
 	def create
-    @order = current_customer.orders.new(order_params)
+	  @order = current_customer.orders.new(order_params)
     @order.save
     flash[:notice] = "ご注文が確定しました。"
-    redirect_to thanx_customers_orders_path
+    redirect_to thanx_customer_orders_path
 
     # もし情報入力でnew_addressの場合ShippingAddressに保存
     if params[:order][:ship] == "1"
@@ -54,17 +62,22 @@ class Customer::OrdersController < ApplicationController
     end
 
     # カート商品の情報を注文商品に移動
-    @cart_items = current_cart
+    @cart_items = CartItem.where(customer_id: current_customer.id)
     @cart_items.each do |cart_item|
-    OrderDetail.create(
-      product:  cart_item.product,
-      order:    @order,
-      quantity: cart_item.quantity,
-      subprice: sub_price(cart_item)
+      #orderitemテーブルのカラムに代入
+    OrderItem.create(
+      item_id:  cart_item.item_id,
+      customer_id: current_customer.id,
+      item_quantity: cart_item.item_quantity,
+      purchase_price_intax: (cart_item.item.non_taxed_price) *1.1
     )
     end
     # 注文完了後、カート商品を空にする
-    @cart_items.destroy_all
+    if @order.save
+      @cart_items.destroy_all
+    else
+      render :log
+    end
 	end
 
 	def thanx
@@ -76,13 +89,13 @@ class Customer::OrdersController < ApplicationController
 
 	def show
 	  @order = Order.find(params[:id])
-    @order_details = @order.order_details
+    @order_items = @order.order_items
 	end
 
   private
 
   def order_params
-    params.require(:order).permit(:postcode, :address, :name, :payment_method, :total_price)
+    params.require(:order).permit(:shipping_postal_code, :address, :name, :payment_method, :billing)
   end
 
   def address_params
@@ -92,6 +105,7 @@ class Customer::OrdersController < ApplicationController
   def to_log
     redirect_to customers_cart_items_path if params[:id] == "log"
   end
+
 
 
 
