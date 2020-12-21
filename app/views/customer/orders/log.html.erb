@@ -12,20 +12,14 @@
     </tr>
   </thead>
   <tbody>
+    <%= @sum = 0 %>
     <% @cart_items.each do |cart| %>
-    <tr>
-      <td> <%= attachment_image_tag( cart.product, :image, size: "60x50", fallback: "no_image.jpg") %>
-      <%= cart.product.name %></td>
-      <td>
-         ¥<%= non_taxed_price(cart.product.non_taxed_price).to_s(:delimited) %>
-      </td>
-      <td>
+      <%= attachment_image_tag( cart.product, :products_image_id, size: "60x50", fallback: "no_image.jpg") %>
+      <%= cart.product.name %>
+        ¥<%= (cart.product.non_taxed_price * 1.1).floor %>
         <%= cart.item_quantity %>
-      </td>
-      <td>
-        ¥<%= sub_price(cart).to_s(:delimited) %>
-      </td>
-    </tr>
+        ¥<%= (cart.product.non_taxed_price * 1.1 * cart.item_quantity).floor %>
+        <% @sum += (cart.product.non_taxed_price * 1.1 * cart.item_quantity).floor %>
     <% end %>
   </tbody>
 </table>
@@ -49,7 +43,7 @@
   <tr>
     <th>支払方法</th>
     <td>
-      <% if @order.payment_method == 0 %>
+      <% if @order.payment_method = 0 %>
         <p>クレジットカード</p>
       <% else %>
         <p>銀行振り込み</p>

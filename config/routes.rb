@@ -30,11 +30,8 @@ Rails.application.routes.draw do
   get "/homes/top" => "homes#top"
   get "/administrator/top" => "administrator/products#top", :as => "administrator_customer_top"
 
-<<<<<<< HEAD
+  # resources :genres,only: [:index,:create,:edit,:update,:show]
 
-  resources :genres,only: [:index,:create,:edit,:update,:show]
-=======
->>>>>>> origin/develop
   get 'administrator' => "homes#administrator", :as => "homes_administrator"
   get 'administrator' => "administrator#top", :as => "administrator_top"
   get "/customers/quit" => "customers#quit", as: 'customers_quit'
