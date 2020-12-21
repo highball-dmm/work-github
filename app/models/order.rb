@@ -9,8 +9,12 @@ class Order < ApplicationRecord
     #   小計  + 送料
     # end
 
-    # def sub_price
-
-    # end
+    def sub_price
+        @sum = 0
+        @cart_items.each do |cart|
+            (cart.product.non_taxed_price * 1.1 * cart.item_quantity).floor
+            @sum += (cart.product.non_taxed_price * 1.1 * cart.item_quantity).floor
+        end
+    end
 
 end
