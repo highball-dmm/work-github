@@ -1,8 +1,10 @@
 <h1>products#show</h1>
 
+<%= attachment_image_tag(@product, :products_image_id, size: "340x220", fallback: "no_image.jpg" ) %>
 <h2><%= @product.name %></h2>
 <%= @product.products_explanation %>
 <p>¥<%= @product.non_taxed_price.to_s(:delimited) %>
+
     <span class="tax">(税込)</span>
 </p>
 
@@ -13,8 +15,5 @@
       <%= f.select :item_quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
       <%= f.submit "カートに入れる" %>
     
-  <h3>売り切れ中</h3>
-  
-
 <h3>売り切れ中</h3>
 <% end %>

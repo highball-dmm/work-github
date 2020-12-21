@@ -6,9 +6,18 @@ one:
   billing: 1
   payment_method: 1
   name: MyString
+<<<<<<< HEAD
+  shipping: MyString
+  address: MyString
+  order_status: 1
+  shipping_postal_code: MyString
+  created_at: 2020-12-18 05:11:53
+  update_at: 
+=======
   shipping_address: MyString
   order_status: 1
   shipping_postal_code: MyString
+>>>>>>> origin/develop
 
 two:
   customer_id: 1
@@ -16,6 +25,15 @@ two:
   billing: 1
   payment_method: 1
   name: MyString
+<<<<<<< HEAD
+  shipping: MyString
+  address: MyString
+  order_status: 1
+  shipping_postal_code: MyString
+  created_at: 2020-12-18 05:11:53
+  update_at: 
+=======
   shipping_address: MyString
   order_status: 1
   shipping_postal_code: MyString
+>>>>>>> origin/develop

@@ -39,5 +39,5 @@
   <% end %>
 
   <% if customer_signed_in? && @customer.id == current_customer.id %>
-        <%= link_to "退会", out_customers_path(current_customer), method: :put, "data-confirm" => "本当に退会しますか？", class: "btn btn-outline-danger" %>
+    <%= link_to "退会", quit_customers_path %>
   <% end %>
