@@ -1,0 +1,20 @@
+<td class="text-left">
+  <%= attachment_image_tag( cart_item.product, :products_image_id, size: "55x43", fallback: "no_image.jpg") %>
+  <%= cart_item.product.name %>
+</td>
+<td class="text-right">
+  ¥<%= (cart_item.product.non_taxed_price * 1.1).floor %>
+</td>
+<td>
+  <%= form_for(cart_item, url: cart_item_path(cart_item), method: :patch , local: true)do |f| %>
+    <%= f.number_field :item_quantity, class: "quantity", size: 10, min: 1, id: "quantity_cart" %>
+    <%= f.submit "変更", class: "btn btn-info" %>
+  <% end %>
+</td>
+<td class="text-right" id='sub_price-<%= cart_item.id %>'>
+  ¥<%= (cart_item.product.non_taxed_price * 1.1 * cart_item.item_quantity).floor %>
+  <% @sum += (cart_item.product.non_taxed_price * 1.1 * cart_item.item_quantity).floor %>
+</td>
+<td>
+  <%= link_to " 削除する", cart_item_path(cart_item), method: :delete, local: true, data: {confirm: "#{cart_item.product.name}を削除してよろしいですか？"}, class: "glyphicon glyphicon-trash btn btn-danger" %>
+</td>
