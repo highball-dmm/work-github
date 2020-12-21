@@ -1,0 +1,22 @@
+<h1>Search#search</h1>
+<p>Find me in app/views/search/search.html.erb</p>
+<div>
+    <span>全(<%= @datas.count %>件)</span>
+		<% if @datas.empty? %>
+	  <h2>該当する商品はありません</h2>
+	<% end %>
+  <% @datas.each do |data| %>
+   <%= link_to customers_product_path(data.id) do %>
+	      <div>
+	        <%= attachment_image_tag(data, :products_image_id, size: "180x130", fallback: "no_image.jpg") %>
+	      </div>
+	      <p><%= data.name %></p>
+	    <% end %>
+	
+	    <% if data.sale_status == true %>
+	      <p>¥<%= data.non_taxed_price.to_s(:delimited) %></p>
+	    <% elsif data.sale_status == false %>
+	      <p>売り切れ中</p>
+    <% end %>
+   <% end %>
+	</div>

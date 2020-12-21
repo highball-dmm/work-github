@@ -1,4 +1,5 @@
 class Customer::OrdersController < ApplicationController
+  include ApplicationHelper
 
   def new
     @order = Order.new
@@ -9,11 +10,14 @@ class Customer::OrdersController < ApplicationController
     #orderのテーブルにあるカラムに情報を入れている
     @cart_items = CartItem.where(customer_id: current_customer.id)
     # binding.pry
-    # @order = Order.new(customer_id: current_customer.id, payment_method: params[:order][:payment_method])
-		@order = Order.new
-		@order.payment_method = params[:order][:payment_method].to_i
+		@order = Order.new(customer_id: current_customer.id, payment_method: params[:order][:payment_method])
+    @sum = 0
+    @cart_items.each do |cart_item|
+      (cart_item.product.non_taxed_price * 1.1 * cart_item.item_quantity).floor
+      @sum += (cart_item.product.non_taxed_price * 1.1 * cart_item.item_quantity).floor
+    end
+    @order.billing =  @sum
 
-    @order.billing =  0
     @order.shipping = 800
     @order.order_status = 0
 
@@ -49,6 +53,12 @@ class Customer::OrdersController < ApplicationController
 	  @order = Order.new
 	  @order.customer_id = current_customer.id
     @order.save
+=======
+	  @order = current_customer.orders.new(order_params)
+    @order.save
+    flash[:notice] = "ご注文が確定しました。"
+    redirect_to thanx_customer_orders_path
+>>>>>>> origin/develop
 
     # もし情報入力でnew_addressの場合ShippingAddressに保存
     if params[:order][:ship] == "1"
@@ -60,10 +70,17 @@ class Customer::OrdersController < ApplicationController
     @cart_items.each do |cart_item|
       #orderitemテーブルのカラムに代入
     OrderItem.create(
+<<<<<<< HEAD
       procuct_id:  cart_item.product.id,
       customer_id: current_customer.id,
       item_quantity: cart_item.item_quantity,
       purchase_price_intax: (cart_item.product.non_taxed_price) *1.1
+=======
+      item_id:  cart_item.item_id,
+      customer_id: current_customer.id,
+      item_quantity: cart_item.item_quantity,
+      purchase_price_intax: (cart_item.item.non_taxed_price) *1.1
+>>>>>>> origin/develop
     )
     end
 
@@ -78,10 +95,18 @@ class Customer::OrdersController < ApplicationController
     #   @order_item.save
     # end
     # 注文完了後、カート商品を空にする
+<<<<<<< HEAD
     @cart_items.destroy_all
 
     redirect_to thanx_customer_orders_path
     flash[:notice] = "ご注文が確定しました。"
+=======
+    if @order.save
+      @cart_items.destroy_all
+    else
+      render :log
+    end
+>>>>>>> origin/develop
 	end
 
 	def thanx
@@ -93,13 +118,17 @@ class Customer::OrdersController < ApplicationController
 
 	def show
 	  @order = Order.find(params[:id])
-    @order_details = @order.order_details
+    @order_items = @order.order_items
 	end
 
   private
 
   def order_params
+<<<<<<< HEAD
     params.require(:order).permit(:shipping_postal_code, :address, :name, :payment_method, :total_price)
+=======
+    params.require(:order).permit(:shipping_postal_code, :address, :name, :payment_method, :billing)
+>>>>>>> origin/develop
   end
 
   def address_params
@@ -109,6 +138,7 @@ class Customer::OrdersController < ApplicationController
   def to_log
     redirect_to customers_cart_items_path if params[:id] == "log"
   end
+
 
 
 

@@ -9,8 +9,8 @@
               </tr>
               <tr>
               　<th>配送先</th>
-                <td><%= @order.postcode %><br>
-                	  <%= @order.address %><br>
+                <td><%= @order.shipping_postal_code %><br>
+                	  <%= @order.shipping address %><br>
                 	  <%= @order.name %>
                 </td>
               </tr>
@@ -30,7 +30,7 @@
       <table>
         <tr>
           <th>商品合計</th>
-          <td><%= total_price(@order_details).to_s(:delimited) %>円</td>
+          <td><%= total_price(@order_items).to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <th>配送料</th>
@@ -54,18 +54,18 @@
   	        </tr>
         </thead>
         <tbody>
-        	<% @order_details.each do |order_detail| %>
+        	<% @order_items.each do |order_item| %>
             <tr>
-  	        <td><%= order_detail.product.name %></td>
-  	        <td><%= tax_price(order_detail.product.non_taxed_price).to_s(:delimited) %>円</td>
-  	        <td><%= order_detail.item_quantity %></td>
+  	        <td><%= order_item.product.name %></td>
+  	        <td><%= tax_price(order_item.product.non_taxed_price).to_s(:delimited) %>円</td>
+  	        <td><%= order_item.item_quantity %></td>
   	        <td><%= sub_price(order_detail).to_s(:delimited) %>円</td>
             </tr>
           <% end %>
         </tbody>
         </table>
     <% if customer_signed_in? %>
-      <%= link_to "注文履歴一覧へ戻る", customers_orders_path %>
+      <%= link_to "注文履歴一覧へ戻る", customer_orders_path %>
     <% else %>
       <%= link_to "会員詳細へ戻る", admin_customer_path %>
     <% end %>

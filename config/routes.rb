@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'search/search'
   devise_for :administrator, controllers: {
     sessions:      'administrators/sessions',
     passwords:     'administrators/passwords',
@@ -30,7 +31,6 @@ Rails.application.routes.draw do
   get "/homes/top" => "homes#top"
   get "/administrator/top" => "administrator/products#top", :as => "administrator_customer_top"
 
-  # resources :genres,only: [:index,:create,:edit,:update,:show]
 
   get 'administrator' => "homes#administrator", :as => "homes_administrator"
   get 'administrator' => "administrator#top", :as => "administrator_top"
