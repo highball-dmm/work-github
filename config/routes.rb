@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     registrations: 'administrators/registrations'
   }
 
-
   namespace :administrator do
     resources :genres, only: [:index, :create, :edit, :update, :show]
   end
@@ -26,7 +25,6 @@ Rails.application.routes.draw do
     resources :products
   end
 
-
   get 'about' => 'customer/products#about'
   root :to => "customer/products#top"
   get "/homes/top" => "homes#top"
@@ -35,7 +33,6 @@ Rails.application.routes.draw do
 
   get 'administrator' => "homes#administrator", :as => "homes_administrator"
   get 'administrator' => "administrator#top", :as => "administrator_top"
-
 
    scope module: :customer do
     get 'customers/products' => 'products#index'
