@@ -5,7 +5,7 @@
   <thead>
     <tr>
       <th>商品名</th>
-      <th>単価(税抜)</th>
+      <th>単価(税込)</th>
       <th>数量</th>
       <th>小計</th>
     </tr>
@@ -17,7 +17,8 @@
       <td> <%= attachment_image_tag( cart.product, :products_image_id, size: "60x50", fallback: "no_image.jpg") %>
       <%= cart.product.name %></td>
       <td>
-        ¥<%= (cart.product.non_taxed_price * 1.1).floor %>       </td>
+       ¥<%= tax_price(cart.product.non_taxed_price).to_s(:delimited) %>
+      </td>
       <td>
         <%= cart.item_quantity %>
       </td>
@@ -43,7 +44,7 @@
   </tr>
   <tr>
     <th>請求金額</th>
-    <td><%= @order.shipping.to_i + @sum %></td>
+    <td>¥<%= billing(@order).to_s(:delimited) %></td>
   </tr>
 </table>
 
