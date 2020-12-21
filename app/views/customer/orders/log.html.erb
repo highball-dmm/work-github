@@ -48,7 +48,12 @@
 <table>
   <tr>
     <th>支払方法</th>
-    <td><%= @order.payment_method %></td>
+    <td><% if @order.payment_method == 0 %>
+        クレジットカード
+        <% else %>
+        銀行振り込み
+        <% end %>
+     </td>
   </tr>
   <tr>
     <th>お届け先</th>
