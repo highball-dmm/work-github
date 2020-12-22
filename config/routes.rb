@@ -34,10 +34,14 @@ Rails.application.routes.draw do
 
   get 'administrator' => "homes#administrator", :as => "homes_administrator"
   get 'administrator' => "administrator#top", :as => "administrator_top"
+  get "/customers/quit" => "customers#quit", as: 'customers_quit'
+  put "/customers/out" => "customers#out", as: 'customers_out'
+
 
    scope module: :customer do
     get 'customers/products' => 'products#index'
     get 'customers/products/:id' => 'products#show',as: 'customers_product'
+
 
       scope :customers do
        resources :cart_items,only: [:index,:update,:create,:destroy] do
@@ -64,8 +68,13 @@ Rails.application.routes.draw do
     resources :customers
   end
 
+
+  namespace :administrator do
+    resources :orders
+  end
+
   namespace :customer do
-    resources :orders, only: [:new,:index,:show,:create] do
+    resources :orders, only: [:new, :index, :show, :create] do
       collection do
         post 'log'
         get 'thanx'
@@ -73,10 +82,8 @@ Rails.application.routes.draw do
     end
   end
 
-
+  namespace :administrator do
+    resources :order_items, only: [:update]
+  end
 
 end
-
-
-
-

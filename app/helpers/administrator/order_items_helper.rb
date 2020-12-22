@@ -1,0 +1,2 @@
+module Administrator::OrderItemsHelper
+end
