@@ -7,7 +7,7 @@ class Customer::CartItemsController < ApplicationController
   def index
       @cart_items = CartItem.where(customer_id: current_customer.id)
   end
- 
+
   def update
     @cart_item.update(item_quantity: params[:cart_item][:item_quantity].to_i)
     flash.now[:success] = "#{@cart_item.product.name}の数量を変更しました"
@@ -32,7 +32,6 @@ class Customer::CartItemsController < ApplicationController
     #   @cart_item = CartItem.new
     #   flash[:alert] = "個数を選択してください"
     #   render ("customer/products/show")
-    
     end
 	end
 
