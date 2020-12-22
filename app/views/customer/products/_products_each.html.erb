@@ -1,11 +1,10 @@
-
-  <div>
-    <%= link_to customers_product_path(product.id) do %>
-      <div>
+  <div class="product-container">
+      <%= link_to customers_product_path(product.id), class: "btn-link", :style=>"color:#0099FF;" do %>
+      <div id="img_field" class="product">
         <%= attachment_image_tag(product, :products_image_id, size: "180x130", fallback: "no_image.jpg") %>
       </div>
       <p><%= product.name %></p>
-    <% end %>
+      <% end %>
 
     <% if product.sale_status == true %>
       <p>¥<%= product.non_taxed_price.to_s(:delimited) %></p>
