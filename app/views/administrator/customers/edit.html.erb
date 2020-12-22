@@ -29,6 +29,14 @@
     <label for="inputEmail"></label>メールアドレス<br>
       <%= f.text_field :email, autofocus: true, id:"inputEmail"%>
   </div>
+  </div>
+    <div class="form-group">
+    <label for="inputEmail"></label>会員ステータス<br>
+      <%= f.radio_button :user_status, false, checked: true %>
+      <%= f.label :user_status, "有効" %>
+      <%= f.radio_button :user_status, true %>
+      <%= f.label :user_status, "退会済み" %>
+  </div>
   <div class="form-group">
     <%= f.submit "変更を保存" %>
   </div>

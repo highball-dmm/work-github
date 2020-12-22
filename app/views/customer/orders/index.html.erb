@@ -23,8 +23,8 @@
       		<%= order.name %>
       		</td>
       		<td>
-      		<% order.order_details.each do |order_detail| %>
-      		  <%= order_detail.product.name %><br>
+      		<% order.order_items.each do |order_item| %>
+      		  <%= order_item.product.name %><br>
       		<% end %>
       		</td>
       		<td>
@@ -34,7 +34,7 @@
       		<%= order.order_status %>
       		</td>
            <td>
-         	  <%= link_to "注文詳細", customers_order_path(order) %>
+         	  <%= link_to "注文詳細", customer_order_path(order) %>
          	  </td>
         </tr>
       <% end %>

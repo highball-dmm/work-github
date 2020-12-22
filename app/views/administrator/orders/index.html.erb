@@ -18,9 +18,10 @@
             <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
           <% end %>
         </td>
-        <td><%= full_name(order.customer) %></td>
-        <td><%= order.cart_items.count %></td>
+        <td><%= order.customer.first_name %></td>
+        <td><%= order.order_items.count %></td>
         <td><%= order.order_status %></td>
+        <!--デフォルト値を入力する-->
       </tr>
     <% end %>
     </tbody>

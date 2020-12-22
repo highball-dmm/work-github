@@ -1,4 +1,3 @@
-<h1>orders#log</h1>
 
 
 <h2>注文情報確認</h2>
@@ -6,26 +5,20 @@
   <thead>
     <tr>
       <th>商品名</th>
-      <th>単価(税抜)</th>
+      <th>単価(税込)</th>
       <th>数量</th>
       <th>小計</th>
     </tr>
   </thead>
   <tbody>
+    <%= @sum = 0 %>
     <% @cart_items.each do |cart| %>
-    <tr>
-      <td> <%= attachment_image_tag( cart.product, :image, size: "60x50", fallback: "no_image.jpg") %>
-      <%= cart.product.name %></td>
-      <td>
-         ¥<%= non_taxed_price(cart.product.non_taxed_price).to_s(:delimited) %>
-      </td>
-      <td>
+      <%= attachment_image_tag( cart.product, :products_image_id, size: "60x50", fallback: "no_image.jpg") %>
+      <%= cart.product.name %>
+        ¥<%= (cart.product.non_taxed_price * 1.1).floor %>
         <%= cart.item_quantity %>
-      </td>
-      <td>
-        ¥<%= sub_price(cart).to_s(:delimited) %>
-      </td>
-    </tr>
+        ¥<%= (cart.product.non_taxed_price * 1.1 * cart.item_quantity).floor %>
+        <% @sum += (cart.product.non_taxed_price * 1.1 * cart.item_quantity).floor %>
     <% end %>
   </tbody>
 </table>
@@ -37,18 +30,27 @@
   </tr>
   <tr>
     <th>商品合計</th>
-    <td><%= @order.billing.to_s(:delimited) %></td>
+
+     <td>
+     <%= @order.billing %>
+     </td>
   </tr>
   <tr>
     <th>請求金額</th>
-    <td><%= @order.shipping.to_i + @order.billing %></td>
+    <td>¥<%= billing(@order).to_s(:delimited) %></td>
   </tr>
 </table>
 
 <table>
   <tr>
     <th>支払方法</th>
-    <td><%= @order.payment_method %></td>
+    <td>
+      <% if @order.payment_method = 0 %>
+        <p>クレジットカード</p>
+      <% else %>
+        <p>銀行振り込み</p>
+      <% end %>
+    </td>
   </tr>
   <tr>
     <th>お届け先</th>
@@ -61,8 +63,8 @@
     <%= f.hidden_field :address %>
     <%= f.hidden_field :name %>
     <%= f.hidden_field :payment_method %>
-    <%= f.hidden_field :billing  %>
-    <%= f.hidden_field :shipping, value: @shipping %>
+    <%= f.hidden_field :billing, value: @order.billing %>
+    <%= f.hidden_field :shipping, value: @order.shipping.to_i %>
     <%= link_to "注文情報入力へ戻る", new_customer_order_path, data: {"turbolinks" => false} %>
     <%= f.submit "購入を確定する" %>
   <% end %>

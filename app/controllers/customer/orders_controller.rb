@@ -1,4 +1,5 @@
 class Customer::OrdersController < ApplicationController
+  include ApplicationHelper
 
   def new
     @order = Order.new
@@ -9,8 +10,15 @@ class Customer::OrdersController < ApplicationController
     #orderのテーブルにあるカラムに情報を入れている
     @cart_items = CartItem.where(customer_id: current_customer.id)
     # binding.pry
-		@order = Order.new(customer_id: current_customer.id, payment_method: params[:order][:payment_method])
-    @order.billing =  0
+		@order = Order.new(customer_id: current_customer.id, payment_method: params[:order][:payment_method].to_i)
+		# データ型を変更する
+    @sum = 0
+    @cart_items.each do |cart_item|
+      (cart_item.product.non_taxed_price * 1.1 * cart_item.item_quantity).floor
+      @sum += (cart_item.product.non_taxed_price * 1.1 * cart_item.item_quantity).floor
+    end
+    @order.billing =  @sum
+
     @order.shipping = 800
     @order.order_status = 0
 
@@ -29,7 +37,7 @@ class Customer::OrdersController < ApplicationController
 
     # addressにnew_addressの値がはいっていれば
     elsif params[:order][:addresses] == "new_address"
-      @order.postcode = params[:order][:postcode]
+      @order.shipping_postal_code = params[:order][:postcode]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
       @ship = "1"
@@ -42,11 +50,15 @@ class Customer::OrdersController < ApplicationController
     end
   end
 
+  # 文字列として送信する
+  # ストロングパラメータせいすう値しかおくれない
+
 	def create
-    @order = current_customer.orders.new(order_params)
+	  @order = Order.new(order_params)
+	  @order.payment_method = params[:order][:payment_method].to_i
+	  @order.customer_id = current_customer.id
     @order.save
-    flash[:notice] = "ご注文が確定しました。"
-    redirect_to thanx_customers_orders_path
+    # 保存内容を追加する
 
     # もし情報入力でnew_addressの場合ShippingAddressに保存
     if params[:order][:ship] == "1"
@@ -54,17 +66,36 @@ class Customer::OrdersController < ApplicationController
     end
 
     # カート商品の情報を注文商品に移動
-    @cart_items = current_cart
+    @cart_items = CartItem.where(customer_id: current_customer.id)
     @cart_items.each do |cart_item|
-    OrderDetail.create(
-      product:  cart_item.product,
-      order:    @order,
-      quantity: cart_item.quantity,
-      subprice: sub_price(cart_item)
-    )
+      #orderitemテーブルのカラムに代入
+      OrderItem.create!(
+        product_id:  cart_item.product.id,
+        customer_id: current_customer.id,
+        item_quantity: cart_item.item_quantity,
+        purchase_price_intax: (cart_item.product.non_taxed_price) *1.1,
+        order_id: @order.id
+      )
     end
+
+    # rollback transaction 処理が中断された
+    # uninitialized constant  からむ名やモデル名が間違えている
+    # 絡む名を変更するマイグレーションファイルを作る
+
+
+    # current_customer.cart_items.each do |cart_item|
+    #   @order_item = OrderItem.new
+    #   @order_item.procuct_id = cart_item.procuct.id
+    #   @order_item.item_quantity = cart_item.item_quantity
+    #   @order_item.purchase_price_intax = cart_item.procucts.non_taxed_price * 1.1
+    #   @order_item.order_id = @order.id
+    #   @order_item.save
+    # end
     # 注文完了後、カート商品を空にする
     @cart_items.destroy_all
+
+    redirect_to thanx_customer_orders_path
+    flash[:notice] = "ご注文が確定しました。"
 	end
 
 	def thanx
@@ -76,22 +107,23 @@ class Customer::OrdersController < ApplicationController
 
 	def show
 	  @order = Order.find(params[:id])
-    @order_details = @order.order_details
+    @order_items = @order.order_items
 	end
 
   private
 
   def order_params
-    params.require(:order).permit(:postcode, :address, :name, :payment_method, :total_price)
+    params.require(:order).permit(:shipping_postal_code, :address, :name, :total_price)
   end
 
   def address_params
-    params.require(:order).permit(:postcode, :address, :name)
+    params.require(:order).permit(:shipping_postal_code, :address, :name)
   end
 
   def to_log
     redirect_to customers_cart_items_path if params[:id] == "log"
   end
+
 
 
 

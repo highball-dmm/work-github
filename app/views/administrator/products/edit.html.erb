@@ -5,7 +5,7 @@
 <table>
   <tr>
     <td>
-      <%= attachment_image_tag @product, :products_image, :fill, 100, 100, fallback: "no_image.jpg" %><br>
+      <%= attachment_image_tag @product, :products_image, size: "100x100", fallback: "no_image.jpg" %><br>
       <%= f.attachment_field :products_image %>
     </td>
     <td>
