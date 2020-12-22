@@ -82,4 +82,8 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :administrator do
+    resources :order_items, only: [:update]
+  end
+
 end

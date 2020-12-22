@@ -11,7 +11,6 @@
     </tr>
   </thead>
   <tbody>
-<<<<<<< HEAD
     <%= @sum = 0 %>
     <% @cart_items.each do |cart| %>
       <%= attachment_image_tag( cart.product, :products_image_id, size: "60x50", fallback: "no_image.jpg") %>
@@ -20,23 +19,6 @@
         <%= cart.item_quantity %>
         ¥<%= (cart.product.non_taxed_price * 1.1 * cart.item_quantity).floor %>
         <% @sum += (cart.product.non_taxed_price * 1.1 * cart.item_quantity).floor %>
-=======
-    <% @sum = 0 %>
-    <% @cart_items.each do |cart| %>
-    <tr>
-      <td> <%= attachment_image_tag( cart.product, :products_image_id, size: "60x50", fallback: "no_image.jpg") %>
-      <%= cart.product.name %></td>
-      <td>
-       ¥<%= tax_price(cart.product.non_taxed_price).to_s(:delimited) %>
-      </td>
-      <td>
-        <%= cart.item_quantity %>
-      </td>
-      <td>
-         ¥<%= sub_price(cart).to_s(:delimited) %>
-      </td>
-    </tr>
->>>>>>> origin/develop
     <% end %>
   </tbody>
 </table>

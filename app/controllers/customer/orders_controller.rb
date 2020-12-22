@@ -10,7 +10,8 @@ class Customer::OrdersController < ApplicationController
     #orderのテーブルにあるカラムに情報を入れている
     @cart_items = CartItem.where(customer_id: current_customer.id)
     # binding.pry
-		@order = Order.new(customer_id: current_customer.id, payment_method: params[:order][:payment_method])
+		@order = Order.new(customer_id: current_customer.id, payment_method: params[:order][:payment_method].to_i)
+		# データ型を変更する
     @sum = 0
     @cart_items.each do |cart_item|
       (cart_item.product.non_taxed_price * 1.1 * cart_item.item_quantity).floor
@@ -49,16 +50,15 @@ class Customer::OrdersController < ApplicationController
     end
   end
 
+  # 文字列として送信する
+  # ストロングパラメータせいすう値しかおくれない
+
 	def create
-	  @order = Order.new
+	  @order = Order.new(order_params)
+	  @order.payment_method = params[:order][:payment_method].to_i
 	  @order.customer_id = current_customer.id
     @order.save
-=======
-	  @order = current_customer.orders.new(order_params)
-    @order.save
-    flash[:notice] = "ご注文が確定しました。"
-    redirect_to thanx_customer_orders_path
->>>>>>> origin/develop
+    # 保存内容を追加する
 
     # もし情報入力でnew_addressの場合ShippingAddressに保存
     if params[:order][:ship] == "1"
@@ -69,21 +69,18 @@ class Customer::OrdersController < ApplicationController
     @cart_items = CartItem.where(customer_id: current_customer.id)
     @cart_items.each do |cart_item|
       #orderitemテーブルのカラムに代入
-    OrderItem.create(
-<<<<<<< HEAD
-      procuct_id:  cart_item.product.id,
-      customer_id: current_customer.id,
-      item_quantity: cart_item.item_quantity,
-      purchase_price_intax: (cart_item.product.non_taxed_price) *1.1
-=======
-      item_id:  cart_item.item_id,
-      customer_id: current_customer.id,
-      item_quantity: cart_item.item_quantity,
-      purchase_price_intax: (cart_item.item.non_taxed_price) *1.1
->>>>>>> origin/develop
-    )
+      OrderItem.create!(
+        product_id:  cart_item.product.id,
+        customer_id: current_customer.id,
+        item_quantity: cart_item.item_quantity,
+        purchase_price_intax: (cart_item.product.non_taxed_price) *1.1,
+        order_id: @order.id
+      )
     end
 
+    # rollback transaction 処理が中断された
+    # uninitialized constant  からむ名やモデル名が間違えている
+    # 絡む名を変更するマイグレーションファイルを作る
 
 
     # current_customer.cart_items.each do |cart_item|
@@ -95,18 +92,10 @@ class Customer::OrdersController < ApplicationController
     #   @order_item.save
     # end
     # 注文完了後、カート商品を空にする
-<<<<<<< HEAD
     @cart_items.destroy_all
 
     redirect_to thanx_customer_orders_path
     flash[:notice] = "ご注文が確定しました。"
-=======
-    if @order.save
-      @cart_items.destroy_all
-    else
-      render :log
-    end
->>>>>>> origin/develop
 	end
 
 	def thanx
@@ -124,11 +113,7 @@ class Customer::OrdersController < ApplicationController
   private
 
   def order_params
-<<<<<<< HEAD
-    params.require(:order).permit(:shipping_postal_code, :address, :name, :payment_method, :total_price)
-=======
-    params.require(:order).permit(:shipping_postal_code, :address, :name, :payment_method, :billing)
->>>>>>> origin/develop
+    params.require(:order).permit(:shipping_postal_code, :address, :name, :total_price)
   end
 
   def address_params
