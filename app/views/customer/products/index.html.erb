@@ -1,8 +1,9 @@
-<h1>商品一覧</h1>
-
-	<span>全(<%= @products.count %>件)</span>
+<div class="row">
+	<div class="col-xs-10 col-xs-offset-1">
+		<h2 class="product-headline head-line title_h2 text-center">商品一覧
+  	  <span>全(<%= @products.count %>件)</span>
 		</h2>
-		
+
 		<table class="table table-bordered genre-table">
     <thead>
       <tr>
@@ -19,11 +20,11 @@
     <% end %>
     </tbody>
 </table>
-		
-	<div>
-	 <% @products.each do |product| %>
-	  <%= render "products_each", product: product %>
-	 <% end %>
-    </div>
+
+  <div class="clearfix product-box">
+  	 <% @products.each do |product| %>
+  	  <%= render "products_each", product: product %>
+  	 <% end %>
+  </div>
 
 

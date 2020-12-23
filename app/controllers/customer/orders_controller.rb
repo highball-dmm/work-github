@@ -18,7 +18,6 @@ class Customer::OrdersController < ApplicationController
       @sum += (cart_item.product.non_taxed_price * 1.1 * cart_item.item_quantity).floor
     end
     @order.billing =  @sum
-
     @order.shipping = 800
     @order.order_status = 0
 
@@ -32,7 +31,7 @@ class Customer::OrdersController < ApplicationController
     # addressにshipping_addressesの値がはいっていれば
     elsif params[:order][:addresses] == "shipping_addresses"
       ship = ShippingAddress.find(params[:order][:shipping_address_id])
-      @order.postcode = ship.postcode
+      @order.shipping_postal_code = ship.postcode
       @order.address = ship.address
       @order.name = ship.name
 

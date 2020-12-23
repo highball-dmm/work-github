@@ -1,43 +1,53 @@
-<h1>Customers#edit</h1>
-
-<%= form_with model: @customer, url: administrator_customer_path, local:true do |f| %>
-  <div class="form-group">
-    <label for="inputFirst_name">名前 (姓)</label><br>
-      <%= f.text_field :first_name, autofocus: true, id:"inputFirst_name"%>
+<div class="row">
+  <div class="col-xs-12">
+    <h3><%= @customer.first_name %><%= @customer.last_name %>さんの会員情報編集</h3>
+      <div>
+        <%= form_with model: @customer, url: administrator_customer_path, local:true do |f| %>
+      </div>
+      <div class="col-xs-10">
+      <div class="form-group col-xs-12">
+        <%= f.label :"会員ID", class: "col-sm-4 control-label" %>
+        <%= f.label :"#{@customer.id}" %>
+      </div>
+      <div class="form-group col-xs-12">
+        <%= f.label :"氏名", class: "col-sm-3 control-label" %>
+        <%= f.text_field :last_name, class: "last_name col-sm-3 form-control-static name" %>
+        <%= f.text_field :first_name, class: "first_name col-sm-3 form-control-static name" %>
+      </div>
+      <div class="form-group col-xs-12">
+        <%= f.label :"フリガナ", class: "col-sm-3 control-label" %>
+        <%= f.text_field :last_name_kana, class: "kana_last_name col-sm-3 form-control-static name" %>
+        <%= f.text_field :first_name_kana, class: "kana_first_name col-sm-3 form-control-static name" %>
+      </div>
+      <div class="form-group col-xs-12">
+        <%= f.label :"郵便番号", class: "col-sm-3 control-label" %>
+        <%= f.text_field :postcode, class: "col-sm-2 form-control-static" %>
+      </div>
+      <div class="form-group col-xs-12">
+        <%= f.label :"住所", class: "col-sm-3 control-label" %>
+        <%= f.text_field :address, class: "col-sm-5 form-control-static" %>
+      </div>
+      <div class="form-group col-xs-12">
+        <%= f.label :"電話番号(ハイフンなし)", class: "col-sm-3 control-label" %>
+        <%= f.text_field :phone_number, class: "col-sm-2 form-control-static" %>
+      </div>
+      <div class="form-group col-xs-12">
+        <%= f.label :"メールアドレス", class: "col-sm-3 control-label" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-sm-6 form-control-static" %>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail"></label>会員ステータス<br>
+          <%= f.radio_button :user_status, false, checked: true %>
+          <%= f.label :user_status, "有効" %>
+          <%= f.radio_button :user_status, true %>
+          <%= f.label :user_status, "退会済み" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "変更を保存", class: "btn btn-primary" %>
+        <!--保存ができない-->
+      </div>
+      <div>
+        <% end %>
+      </div>
   </div>
-  <div class="form-group">
-    <label for="inputLast_name">名前 (名)</label><br>
-      <%= f.text_field :last_name, autofocus: true, id:"inputLast_name" %>
-  </div>
-  <div class="form-group">
-    <label for="inputFirst_name_kana">フリガナ (姓)</label><br>
-      <%= f.text_field :first_name_kana, autofocus: true, id:"inputFirst_name_kana"%>
-  </div>
-  <div class="form-group">
-    <label for="inputPostcode"></label>郵便番号<br>
-      <%= f.text_field :postcode, autofocus: true, id:"inputPostcode"%>
-  </div>
-  <div class="form-group">
-    <label for="inputAddress"></label>住所<br>
-      <%= f.text_field :address, autofocus: true, id:"inputAddress"%>
-  </div>
-    <div class="form-group">
-    <label for="inputPhone_number"></label>電話番号<br>
-      <%= f.text_field :phone_number, autofocus: true, id:"inputPhone_number"%>
-  </div>
-    <div class="form-group">
-    <label for="inputEmail"></label>メールアドレス<br>
-      <%= f.text_field :email, autofocus: true, id:"inputEmail"%>
-  </div>
-  </div>
-    <div class="form-group">
-    <label for="inputEmail"></label>会員ステータス<br>
-      <%= f.radio_button :user_status, false, checked: true %>
-      <%= f.label :user_status, "有効" %>
-      <%= f.radio_button :user_status, true %>
-      <%= f.label :user_status, "退会済み" %>
-  </div>
-  <div class="form-group">
-    <%= f.submit "変更を保存" %>
-  </div>
-<% end %>
+</div>

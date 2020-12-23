@@ -8,6 +8,6 @@ class Product < ApplicationRecord
   has_many :order_items
 
 
-  enum sale_status: { "販売中": true, "売り切れ": false}
+  enum sale_status: {"販売中": true, "売り切れ": false }
 
 end
