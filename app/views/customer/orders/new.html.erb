@@ -26,11 +26,11 @@
   <%= f.radio_button :addresses, "new_address" %>
   <span>&nbsp;新しいお届け先</span><br>
   <%= f.label :"郵便番号(ハイフンなし)" %><br>
-  <%= f.text_field :shipping_postal_code %><br>
+  <%= text_field_tag 'shipping_address[postcode]' %><br>
   <%= f.label :"住所" %><br>
-  <%= f.text_field :address %><br>
+  <%= text_field_tag 'shipping_address[address]' %><br>
   <%= f.label :"宛名" %><br>
-  <%= f.text_field :name %><br>
+  <%= text_field_tag 'shipping_address[name]' %><br>
 
   <%= link_to cart_items_path do %>
     カート(<%= current_customer.cart_items.count %>)へ戻る

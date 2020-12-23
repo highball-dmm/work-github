@@ -2,7 +2,7 @@ class Customer::ShippingAddressesController < ApplicationController
     before_action :authenticate_customer!
 
   def index
-		@shipping_addresses = ShippingAddress.all
+	@shipping_addresses = current_customer.shipping_addresses
   	@shipping_address = ShippingAddress.new
   end
 
@@ -11,7 +11,7 @@ class Customer::ShippingAddressesController < ApplicationController
 	  @shipping_address.customer_id = current_customer.id
 	  if @shipping_address.save
 	  	 flash.now[:notice] = "新規配送先を登録しました"
-	      redirect_to customer_shipping_addresses_path
+	      redirect_to shipping_addresses_path
 	  else
 	   	# @shipping_addresses = current_customer.shipping_address
 	      render 'index'
@@ -26,7 +26,7 @@ class Customer::ShippingAddressesController < ApplicationController
 	  @shipping_address = ShippingAddress.find(params[:id])
 	  if @shipping_address.update(shipping_address_params)
   	   flash[:success] = "配送先を変更しました"
-       redirect_to customer_shipping_addresses_path
+       redirect_to shipping_addresses_path
 	  else
 	   render "edit"
 	  end
@@ -37,7 +37,7 @@ class Customer::ShippingAddressesController < ApplicationController
 	  if @shipping_address.destroy
       #@shipping_addresses = current_customer.shipping_address
       flash.now[:alert] = "配送先を削除しました"
-	  redirect_to customer_shipping_addresses_path
+	  redirect_to shipping_addresses_path
 	  end
  end
 

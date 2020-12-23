@@ -5,7 +5,7 @@
 
         <%= render "layouts/error_messages", resource: @shipping_address %>
 
-        <%= form_with model: @shipping_address, :url => customer_shipping_address_path, local: true ,method: :patch, local:true  do |f| %>
+        <%= form_with model: @shipping_address, :url => shipping_address_path, local: true ,method: :patch, local:true  do |f| %>
 
             <div class="shipping_addres col-xs-10">
                 <div class="form-group col-xs-12">
@@ -28,7 +28,7 @@
             </div>
         <% end %>
             <div class="shipping-back col-xs-12">
-                <%= link_to "配送先登録/一覧へ戻る", customer_shipping_addresses_path, data: {"turbolinks" => false}, class: "btn btn-info" %>
+                <%= link_to "配送先登録/一覧へ戻る", shipping_addresses_path, data: {"turbolinks" => false}, class: "btn btn-info" %>
             </div>
     </div>
 </div>
