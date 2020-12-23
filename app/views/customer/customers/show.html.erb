@@ -41,5 +41,3 @@
   <% if customer_signed_in? && @customer.id == current_customer.id %>
     <%= link_to "退会", quit_customers_path %>
   <% end %>
-
-<%= link_to "確認画面へ", new_customer_order_path %>

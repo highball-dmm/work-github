@@ -15,6 +15,12 @@ class Administrator::OrdersController < ApplicationController
     redirect_to request.referer
   end
 
+  def destroy
+    order = Order.find(params[:id])
+    order.destroy
+    redirect_to administrator_orders_path
+  end
+
   private
   def  order_params
     params.require(:order).permit(:order_status)
