@@ -22,6 +22,7 @@ class Customer::OrdersController < ApplicationController
     @order.shipping = 800
     @order.order_status = 0
 
+
     # addressにresidenceの値がはいっていれば
     if params[:order][:addresses] == "residence"
       @order.shipping_postal_code = current_customer.postcode
