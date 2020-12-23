@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
       when Administrator
         administrator_customer_top_path
       when Customer
-        customers_path(current_customer)
+        root_path(current_customer)
       end
   end
 
