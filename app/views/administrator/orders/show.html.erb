@@ -5,7 +5,7 @@
   <tr>
     <td>購入者</td>
     <td>
-      <%= link_to customer_customer_path(@order) do %>
+      <%= link_to administrator_customer_path(@order.customer) do %>
         <%= @order.name %>
       <% end %>
     </td>
@@ -18,13 +18,15 @@
     <td>支払方法</td>
     <td><%= @order.payment_method %></td>
   </tr>
-  <%= form_with model: @order, url: administrator_order_path(@order), local:true do |f| %>
   <tr>
     <td>注文ステータス</td>
-    <td><%= f.select :order_status, [["入金待ち", "入金待ち"], ["入金済み", "入金済み"], ["製作中", "制作中"], ["発送準備中", "発送準備中"], ["発送済み", "発送済み"]] %></td>
-    <td><%= f.submit "更新" %></td>
+    <td>
+      <%= form_with model: @order, url: administrator_order_path(@order), local:true do |f| %>
+      <%= f.select :order_status, [["入金待ち", "入金待ち"], ["入金確認", "入金確認"], ["製作中", "制作中"], ["発送待ち", "発送待ち"], ["発送済み", "発送済み"]] %>
+      <%= f.submit "更新" %>
+      <% end %>
+    </td>
   </tr>
-  <% end %>
 </table>
 
 
@@ -40,17 +42,12 @@
     </tr>
   </thead>
   <tbody>
-	<% if flash[:notice] %>
-  	<div class="flash">
-       <%= flash[:notice] %>
-  	</div>
-  <% end %>
   <% @order_items.each do |order_item| %>
     <tr>
       <td><%= order_item.product.name %></td>
-      <td><%= (order_item.product.non_taxed_price * 1.1) %></td>
+      <td><%= (order_item.product.non_taxed_price * 1.1).floor %></td>
       <td><%= order_item.item_quantity %></td>
-      <td><%= (order_item.product.non_taxed_price * 1.1) * order_item.item_quantity %></td>
+      <td><%= (order_item.product.non_taxed_price * 1.1).floor * order_item.item_quantity %></td>
       <td><%= form_with model: order_item, url: administrator_order_item_path(order_item), method: :patch do |f| %>
         <%= f.select :production_status, [["着手不可", "着手不可"], ["制作待ち", "制作待ち"], ["製作中", "製作中"], ["制作完了", "製作完了"]] %>
         <%= f.submit "更新" %>
@@ -64,14 +61,14 @@
   <table>
     <tr>
       <td>商品合計 <%= @order.billing %>円</td>
-      <%= total_price(@order).to_s(:delimited) %>円
     </tr>
     <tr>
       <td>送料 <%= @order.shipping %>円</td>
     </tr>
     <tr>
-      <td>請求金額合計 <%=  %>円</td>
-      <!--計算式を記入する-@order.billing+@order.shipping-->
+      <td>請求金額合計 <%= (@order.billing.to_i + @order.shipping.to_i) %>円</td>
     </tr>
   </table>
 </table>
+
+<%= link_to "削除する", administrator_order_path(@order), method: :delete %>

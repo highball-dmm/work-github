@@ -18,7 +18,6 @@ class Customer::OrdersController < ApplicationController
       @sum += (cart_item.product.non_taxed_price * 1.1 * cart_item.item_quantity).floor
     end
     @order.billing =  @sum
-
     @order.shipping = 800
     @order.order_status = 0
 
