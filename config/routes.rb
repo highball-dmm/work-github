@@ -35,8 +35,6 @@ Rails.application.routes.draw do
   get 'administrator' => "homes#administrator", :as => "homes_administrator"
   get 'administrator' => "administrator#top", :as => "administrator_top"
 
-
-
    scope module: :customer do
     get 'customers/products' => 'products#index'
     get 'customers/products/:id' => 'products#show',as: 'customers_product'

@@ -1,44 +1,50 @@
-<h3><%= @customer.first_name %><%= @customer.last_name %>さんの会員詳細</h3>
-
-<table class="table table-bordered table-condensed" >
-	<tbody>
-		<tr>
-			<td class="info col-xs-2">顧客ID</td>
-			<td class="text-left">
-				<%= @customer.id %>
-				<% if @customer.user_status == false %>
-		          有効会員
-		        <% else %>
-		          退会済
-        		<% end %><%=  %>
-			</td>
-		</tr>
-		<tr>
-			<td class="info">氏名</td>
-			<td class="text-left"><%= @customer.first_name %><%= @customer.last_name %></td>
-		</tr>
-		<tr>
-			<td class="info">フリガナ</td>
-			<td class="text-left"><%= @customer.first_name_kana %><%= @customer.last_name_kana %></td>
-		</tr>
-		<tr>
-			<td class="info">郵便番号</td>
-			<td class="text-left"><%= @customer.postcode %></td>
-		</tr>
-		<tr>
-			<td class="info">住所</td>
-			<td class="text-left"><%= @customer.address %></td>
-		</tr>
-		<tr>
-			<td class="info">電話番号</td>
-			<td class="text-left"><%= @customer.phone_number %></td>
-		</tr>
-		<tr>
-			<td class="info">メールアドレス</td>
-			<td class="text-left"><%= @customer.email %></td>
-		</tr>
-	</tbody>
-</table>
-
-<p><%= link_to "プロフィール編集", edit_administrator_customer_path(@customer) %></p>
-<p><%= link_to "削除", administrator_customer_path, method: :delete %></p>
+<h4><%= @customer.first_name %><%= @customer.last_name %>さんの会員詳細</h4>
+<br>
+<div class="row">
+    <div class="col-xs-8">
+      <div class="field">
+        <p>
+          顧客ID　　　　　<%= @customer.id %>
+          <% if @customer.user_status == true %>
+            <span>　<i class="fas fa-bullseye blue"></i>退会済
+          <% elsif @customer.user_status == false %>
+            　<i class="fas fa-bullseye red"></i>有効会員</span>
+          <% end %>
+        </p>
+      </div>
+      <div class="field">
+        <p>
+          氏名　　　　　　<%= @customer.first_name %>  <%= @customer.last_name %>
+        </p>
+      </div>
+      <div class="field">
+        <p>
+          フリガナ　　　　<%= @customer.first_name_kana %>  <%= @customer.last_name_kana %>
+        </p>
+      </div>
+      <div class="field">
+        <p>
+          郵便番号　　　　<%= @customer.postcode %>
+        </p>
+      </div>
+      <div class="field">
+        <p>
+          住所　　　　　　<%= @customer.address %>
+        </p>
+      </div>
+      <div class="field">
+        <p>
+          電話番号　　　　<%= @customer.phone_number %>
+        </p>
+      </div>
+      <div class="field">
+        <p>
+          メールアドレス　<%= @customer.email%>
+        </p>
+      </div>
+      <div class="actions">
+        <%= link_to "編集する",edit_administrator_customer_path(@customer), class: "glyphicon glyphicon-pencil btn btn-success edit_shipping_addres_#{@customer.id}" %>
+        <%= link_to " 注文履歴一覧を見る", administrator_orders_path(@customer), class: "glyphicon glyphicon-folder-open btn btn-info" %>
+      </div>
+    </div>
+  </div>
