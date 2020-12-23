@@ -12,7 +12,7 @@ class Administrator::ProductsController < ApplicationController
   def create
     product = Product.new(product_params)
     product.save
-    redirect_to administrator_products_path
+    redirect_to administrator_product_path(product)
   end
 
   def index
