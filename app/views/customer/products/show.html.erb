@@ -17,19 +17,13 @@
       </div>
 
     <div class="field">
-      <% if @product.sale_status == true %>
-        <% if @product.genre.is_active == true %>
+
           <%= form_with :model => @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
             <%= f.hidden_field :product_id, value: @product.id %>
             <%= f.select :item_quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
             <%= f.submit "カートに入れる" %>
           <% end %>
-        <% else %>
-          <h3>売り切れ中</h3>
-        <% end %>
-      <% elsif @product.sale_status == false %>
-          <h3>売り切れ中</h3>
-      <% end %>
+
     </div>
  </div>
 </div>

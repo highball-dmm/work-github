@@ -34,8 +34,7 @@ Rails.application.routes.draw do
 
   get 'administrator' => "homes#administrator", :as => "homes_administrator"
   get 'administrator' => "administrator#top", :as => "administrator_top"
-  get "/customers/quit" => "customers#quit", as: 'customers_quit'
-  put "/customers/out" => "customers#out", as: 'customers_out'
+
 
 
    scope module: :customer do
