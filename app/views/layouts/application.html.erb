@@ -8,15 +8,30 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+  <header>
+    <nav>
+      
+        <h1>
+          <% if administrator_signed_in? %>
+          <% else %>
+          <% end %>
+        </h1>
+        <% if administrator_signed_in? %>
+          <h1>
+            <%= link_to "Nagano CAKE", administrator_customer_top, class: "fas fa-birthday-cake" %>
+          </h1>
+        	<%= render 'layouts/header.admin' %>
+        <% else %>
+          <h1>
+           <%= link_to "Ngano Cake", root_path, class: "fas fa-birthday-cake" %>
+          </h1>
+        	<%= render 'layouts/login' %>
+        <% end %>
+    </nav>
+  </header>
 
 
-
-    <% if administrator_signed_in? %>
-    	<%= render 'layouts/header.admin' %>
-    <% else %>
-    	<%= render 'layouts/login' %>
-    <% end %>
-
+    
     <div class="container">
       <div id="flash">
         <%= render "layouts/flash" %>

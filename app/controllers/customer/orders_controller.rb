@@ -37,9 +37,14 @@ class Customer::OrdersController < ApplicationController
 
     # addressにnew_addressの値がはいっていれば
     elsif params[:order][:addresses] == "new_address"
-      @order.shipping_postal_code = params[:order][:shipping_postal_code]
-      @order.address = params[:order][:address]
-      @order.name = params[:order][:name]
+      
+  	  @shipping_address = ShippingAddress.new(shipping_address_params)
+  	  @shipping_address.customer_id = current_customer.id
+  	  @shipping_address.save
+ 
+      @order.shipping_postal_code = @shipping_address.postcode
+      @order.address = @shipping_address.address
+      @order.name = @shipping_address.name
       @ship = "1"
 
       # バリデーションがあるならエラーメッセージを表示
@@ -113,16 +118,16 @@ class Customer::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:shipping_postal_code, :address, :name, :billing, :shipping)
+    params.require(:order).permit(:shipping_postal_code, :address, :name, :billing, :shipping, :payment_method)
   end
-
-  def address_params
-    params.require(:order).permit(:shipping_postal_code, :address, :name)
+  def shipping_address_params
+  	params.require(:shipping_address).permit(:postcode, :address, :name)
   end
 
   def to_log
     redirect_to customers_cart_items_path if params[:id] == "log"
   end
+
 
 
 

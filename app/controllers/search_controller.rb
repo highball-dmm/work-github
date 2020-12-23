@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
     def search
+      @genres = Genre.all
       @value = params["search"]["value"]         #データを代入
       @how = params["search"]["how"]             #データを代入
       @datas = search_for(@how, @value)          #def search_forを実行(引数に検索ワードと検索方法)

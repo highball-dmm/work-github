@@ -50,17 +50,21 @@
           </div>
         </div>
 
-        <div class="btns col-xs-8">
-          <%= link_to cart_items_path, class: "glyphicon glyphicon-shopping-cart btn btn-info col-xs-3 cart-back"  do %>
-            カート(<%= current_customer.cart_items.count %>)へ戻る
-          <% end %>
-          <%= f.submit "確認画面へ進む", class: "btn btn-success col-xs-5" %>
-        </div>
-      <% end %>
-    </div>
-    <% else %>
-      <p>お客様のショッピングカートに商品はありませんので注文情報の入力ができません。</p>
-      <p><%= link_to "商品一覧", customers_products_path %>から商品をお探し下さい。</p>
-    <% end %>
-  </div>
-</div>
+
+  <%= f.radio_button :addresses, "new_address" %>
+  <span>&nbsp;新しいお届け先</span><br>
+  <%= f.label :"郵便番号(ハイフンなし)" %><br>
+  <%= text_field_tag 'shipping_address[postcode]' %><br>
+  <%= f.label :"住所" %><br>
+  <%= text_field_tag 'shipping_address[address]' %><br>
+  <%= f.label :"宛名" %><br>
+  <%= text_field_tag 'shipping_address[name]' %><br>
+
+  <%= link_to cart_items_path do %>
+    カート(<%= current_customer.cart_items.count %>)へ戻る
+  <% end %>
+  <%= f.submit "確認画面へ進む" %>
+<% end %>
+
+<p>お客様のショッピングカートに商品はありませんので注文情報の入力ができません。</p>
+<p><%= link_to "商品一覧", customers_products_path %>から商品をお探し下さい。</p>
