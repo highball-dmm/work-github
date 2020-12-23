@@ -22,6 +22,7 @@ class Customer::OrdersController < ApplicationController
     @order.shipping = 800
     @order.order_status = 0
 
+
     # addressにresidenceの値がはいっていれば
     if params[:order][:addresses] == "residence"
       @order.shipping_postal_code = current_customer.postcode
@@ -113,7 +114,7 @@ class Customer::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:shipping_postal_code, :address, :name, :total_price)
+    params.require(:order).permit(:shipping_postal_code, :address, :name, :billing, :shipping)
   end
 
   def address_params

@@ -20,7 +20,7 @@
             		<%= order.created_at.strftime('%Y/%m/%d') %>
             	</td>
             		<td class="text-left">
-            		<%= order.postcode %><br>
+            		<%= order.shipping_postal_code %><br>
             		<%= order.address %><br>
             		<%= order.name %>
             		</td>
@@ -30,8 +30,8 @@
             		<% end %>
             		</td>
             		<td>
-            		<%= order.total_price.to_s(:delimited) %>円
-            		</td>
+                <%= total_price(order.order_items).to_s(:delimited) %>円
+                </td>
             		<td>
             		<%= order.order_status %>
             		</td>
