@@ -11,7 +11,7 @@ class Customer::ShippingAddressesController < ApplicationController
 	  @shipping_address.customer_id = current_customer.id
 	  if @shipping_address.save
 	  	 flash.now[:notice] = "新規配送先を登録しました"
-	      redirect_to customer_shipping_addresses_path
+	      redirect_to shipping_addresses_path
 	  else
 	   	# @shipping_addresses = current_customer.shipping_address
 	      render 'index'

@@ -22,10 +22,10 @@
                 <%= shipping_address.name %>
             </td>
             <td>
-                <%= link_to "編集する",edit_customer_shipping_address_path(shipping_address), class: "glyphicon glyphicon-pencil btn-sm btn-primary" %><%# 参考サイトと変更箇所あり %>
+                <%= link_to "編集する",edit_shipping_address_path(shipping_address), class: "glyphicon glyphicon-pencil btn-sm btn-primary" %><%# 参考サイトと変更箇所あり %>
             </td>
             <td>
-                <%= link_to "削除する",customer_shipping_address_path(shipping_address), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, remote: true, class: "glyphicon glyphicon-trash btn-sm btn-danger destroy_book_#{shipping_address.id}" %><%# 参考サイトと変更箇所あり %>
+                <%= link_to "削除する",shipping_address_path(shipping_address), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, remote: true, class: "glyphicon glyphicon-trash btn-sm btn-danger destroy_book_#{shipping_address.id}" %><%# 参考サイトと変更箇所あり %>
             </td>
         </tr>
       <% end %>

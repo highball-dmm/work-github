@@ -1,48 +1,3 @@
-<<<<<<< HEAD
-<h3><%= @customer.first_name %><%= @customer.last_name %>さんの会員詳細</h3>
-
-<table class="table table-bordered table-condensed" >
-	<tbody>
-		<tr>
-			<td class="info col-xs-2">顧客ID</td>
-			<td class="text-left"><%= @customer.id %></td>
-		</tr>
-		<tr>
-			<td class="info">氏名</td>
-			<td class="text-left"><%= @customer.first_name %><%= @customer.last_name %></td>
-		</tr>
-		<tr>
-			<td class="info">フリガナ</td>
-			<td class="text-left"><%= @customer.first_name_kana %><%= @customer.last_name_kana %></td>
-		</tr>
-		<tr>
-			<td class="info">郵便番号</td>
-			<td class="text-left"><%= @customer.postcode %></td>
-		</tr>
-		<tr>
-			<td class="info">住所</td>
-			<td class="text-left"><%= @customer.address %></td>
-		</tr>
-		<tr>
-			<td class="info">電話番号</td>
-			<td class="text-left"><%= @customer.phone_number %></td>
-		</tr>
-		<tr>
-			<td class="info">メールアドレス</td>
-			<td class="text-left"><%= @customer.email %></td>
-		</tr>
-	</tbody>
-</table>
-
-
-  <% if @customer == current_customer %>
-    <p><%= link_to "プロフィール編集", edit_customer_customer_path(@customer) %></p>
-  <% end %>
-
-  <% if customer_signed_in? && @customer.id == current_customer.id %>
-    <%= link_to "退会", quit_customers_path %>
-  <% end %>
-=======
 <div class="row">
 	<div class="col-xs-offset-1 col-xs-8">
 		<h2 class="head-line text-center title_h2"><%= @customer.first_name %><%= @customer.last_name %>さんのマイページ</h2>
@@ -103,4 +58,3 @@
 
 
 
->>>>>>> origin/develop
