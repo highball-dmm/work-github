@@ -32,4 +32,5 @@ class ApplicationController < ActionController::Base
   def set_cart_item
     @cart_item = CartItem.find(params[:id])
   end
+  
 end
