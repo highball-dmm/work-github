@@ -25,11 +25,11 @@
   <% @datas.each do |data| %>
    <%= link_to customers_product_path(data.id) do %>
 	      <div>
-	        <%= attachment_image_tag(data, :products_image_id, size: "180x130", fallback: "no_image.jpg") %>
+	        <%= attachment_image_tag(data, :products_image, size: "180x130", fallback: "no_image.jpg") %>
 	      </div>
 	      <p><%= data.name %></p>
 	    <% end %>
-	
+
 	    <% if data.sale_status == true %>
 	      <p>¥<%= data.non_taxed_price.to_s(:delimited) %></p>
 	    <% elsif data.sale_status == false %>

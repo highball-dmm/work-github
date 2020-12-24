@@ -1,10 +1,10 @@
 <% provide(:title, "ジャンル一覧・追加") %>
 <div class="row">
-  <div class="col-xs-12">
-    <h2 class="head-line title_h2 text-center">ジャンル一覧・追加</h2>
+  <div class="col-md-12">
+    <h2 class="head-line title_h2 text-center">ジャンル一覧・追加</h2><br><br><br>
       <%= form_for @genre, :url => {:action => :create} do |f| %>
         <%= render "layouts/error_messages", resource: @genre %>
-        <div class="col-xs-offset-1">
+        <div class="col-md-10 offset-md-4">
           <i class="fas fa-candy-cane"></i>ジャンル
           <%= f.text_field :name  %>
             <%= f.radio_button :is_active, true %>
@@ -14,7 +14,8 @@
           <%= f.submit "追加", class: "btn btn-info" %>
         </div>
       <% end %>
-    <div class="col-xs-8 col-xs-offset-2">
+      <br><br>
+    <div class="col-md-8 offset-md-2 text-center">
       <table class="table table-hover table-inverse table-bordered">
         <thead>
           <tr class="info">

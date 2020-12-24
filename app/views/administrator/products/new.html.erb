@@ -1,17 +1,17 @@
 <div class="row">
-  <div class="col-sm-8 col-sm-offset-2">
+  <div class="col-md-8 col-md-offset-2">
     <h3>商品新規追加</h3>
   </div>
 </div>
 <%= form_for(@product, url:administrator_products_path) do |f| %>
   <div class="row">
-    <div class="col-sm-4 col-sm-offset-2">
+    <div class="col-md-4 col-md-offset-2">
   			<%= attachment_image_tag @product, :products_image, src: "", size: "300x250", id: "preview", fallback: "no_image.jpg" %>
       <div class="field">
         <%= f.attachment_field :products_image, placeholder: "商品画像", style: "padding: 15px;", onchange: "expressFile()" %>
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-md-4">
       <div class="field row">
         <%= f.label :name, "商品名", class:"control-label" %>
         <%= f.text_field :name, class:'col-md-12 control-form' %>
@@ -34,7 +34,7 @@
       </div>
       <br>
       <div class="actions row">
-      <div class="col-sm-4 col-sm-offset-4">
+      <div class="col-md-4 col-md-offset-4">
         <%= f.submit '新規登録', class:'btn btn-primary' %>
       </div>
       </div>

@@ -3,22 +3,24 @@
   <head>
     <title>WorkGithub</title>
     <%= csrf_meta_tags %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
    
-  <body id="wrapper">
-   <header>
-    <nav class="navbar navbar-expand-lg navbar bg">
+  <body id="wrapper" class="d-flex flex-column vh-100">
+   <header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light">
+<%= link_to "管理者ページへ", administrator_top_path %>
+
       
         <% if administrator_signed_in? %>
-          <h1>
+          <h1 class="navbar-brand p-3">
             <%= link_to "Nagano CAKE", administrator_customer_top_path, class: "fas fa-birthday-cake" %>
           </h1>
         	<%= render 'layouts/header.admin' %>
         <% else %>
-          <h1>
+          <h1 class="navbar-brand">
            <%= link_to "Nagano Cake", root_path, class: "fas fa-birthday-cake" %>
           </h1>
         	<%= render 'layouts/login' %>

@@ -24,7 +24,9 @@
   // color: #6c6b6b;
 }
 
-
+li {
+    margin: 5px;
+}
 .container {
   height: 100%;
 }
@@ -44,15 +46,12 @@
    border-radius:30px;
  }
  .header-name {
-   padding-top: 17px;
-   padding-right: 10px;
+   padding-top: 10px;
+   margin-right: 10vh;
    font-weight: bold;
    color: #444444;
  }
- .navbar-right .dropdown-menu {
-    right: 0;
-    left: 0;
-}
+ 
 
 
 #error_explanation {
@@ -96,6 +95,7 @@ footer{
     background-color: #FFC7AF;
     text-align: center;
     margin-top: auto;
+<<<<<<< HEAD
 }
 
 .product-container {
@@ -124,4 +124,6 @@ footer{
 .actions {
     margin-top: 20px;
     margin-bottom: 20px;
+=======
+>>>>>>> origin/develop
 }
