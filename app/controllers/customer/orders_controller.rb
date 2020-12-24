@@ -118,7 +118,7 @@ class Customer::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:shipping_postal_code, :address, :name, :billing, :shipping, :payment_method)
+    params.require(:order).permit(:shipping_postal_code, :address, :name, :billing, :shipping)
   end
   def shipping_address_params
   	params.require(:shipping_address).permit(:postcode, :address, :name)
