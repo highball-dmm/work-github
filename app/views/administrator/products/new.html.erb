@@ -1,23 +1,43 @@
-<h3>商品新規登録</h3>
-
-<%= form_with model: @product, url: administrator_products_path, method: :POST, local:true do |f| %>
-<table>
-  <tr>
-    <td>
-      <%= attachment_image_tag @product, :products_image, :fill, 100, 100, fallback: "no_image.jpg" %><br>
-      <%= f.attachment_field :products_image %>
-    </td>
-    <td>
-      商品名<br><%= f.text_field :name %><br>
-      商品説明<br><%= f.text_area :products_explanation %><br>
-      ジャンル<br><%= f.collection_select(:genre_id, @genres, :id, :name) %><br>
-      税抜価格<br><%= f.text_field :non_taxed_price %><br>
-      販売ステータス<br><%= f.select :sale_status, [["販売中", "販売中"], ["売り切れ", "売り切れ"]] %><br>
-    </td>
-    <td>
-      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <%= f.submit "新規登録" %>
-    </td>
-  </tr>
-</table>
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h3>商品新規追加</h3>
+  </div>
+</div>
+<%= form_for(@product, url:administrator_products_path) do |f| %>
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-2">
+  			<%= attachment_image_tag @product, :products_image, src: "", size: "300x250", id: "preview", fallback: "no_image.jpg" %>
+      <div class="field">
+        <%= f.attachment_field :products_image, placeholder: "商品画像", style: "padding: 15px;", onchange: "expressFile()" %>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="field row">
+        <%= f.label :name, "商品名", class:"control-label" %>
+        <%= f.text_field :name, class:'col-md-12 control-form' %>
+      </div>
+      <div class="field row">
+        <%= f.label :products_explanation, "商品説明", class:"control-label" %>
+        <%= f.text_area :products_explanation, class:'col-md-12 control-form' %>
+      </div>
+      <div class="field row">
+        <%= f.label :genre_id, "ジャンル", class:"control-label" %>
+        <%= f.collection_select(:genre_id, @genres, :id, :name) %>
+      </div>
+      <div class="field row">
+        <%= f.label :non_taxed_price, "税抜価格", class:"control-label" %>
+        <%= f.text_field :non_taxed_price, class:'col-md-12 control-form' %>
+      </div>
+      <div class="field row">
+        <%= f.label :sales_status, "販売ステータス", class:"control-label" %>
+        <%= f.select :sale_status, [["販売中", "販売中"], ["売り切れ", "売り切れ"]], class:"control-label" %>
+      </div>
+      <br>
+      <div class="actions row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <%= f.submit '新規登録', class:'btn btn-primary' %>
+      </div>
+      </div>
+    </div>
+  </div>
 <% end %>

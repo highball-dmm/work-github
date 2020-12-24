@@ -9,7 +9,6 @@ class Customer::OrdersController < ApplicationController
   def log
     #orderのテーブルにあるカラムに情報を入れている
     @cart_items = CartItem.where(customer_id: current_customer.id)
-    # binding.pry
 		@order = Order.new(customer_id: current_customer.id, payment_method: params[:order][:payment_method].to_i)
 		# データ型を変更する
     @sum = 0
@@ -37,11 +36,11 @@ class Customer::OrdersController < ApplicationController
 
     # addressにnew_addressの値がはいっていれば
     elsif params[:order][:addresses] == "new_address"
-      
+
   	  @shipping_address = ShippingAddress.new(shipping_address_params)
   	  @shipping_address.customer_id = current_customer.id
   	  @shipping_address.save
- 
+
       @order.shipping_postal_code = @shipping_address.postcode
       @order.address = @shipping_address.address
       @order.name = @shipping_address.name
@@ -118,8 +117,9 @@ class Customer::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:shipping_postal_code, :address, :name, :billing, :shipping, :payment_method)
+    params.require(:order).permit(:shipping_postal_code, :address, :name, :billing, :shipping)
   end
+  
   def shipping_address_params
   	params.require(:shipping_address).permit(:postcode, :address, :name)
   end

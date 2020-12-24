@@ -10,28 +10,22 @@
   <body>
   <header>
     <nav>
-      
+      <% if administrator_signed_in? %>
         <h1>
-          <% if administrator_signed_in? %>
-          <% else %>
-          <% end %>
+          <%= link_to "Nagano CAKE", administrator_customer_top_path, class: "fas fa-birthday-cake" %>
         </h1>
-        <% if administrator_signed_in? %>
-          <h1>
-            <%= link_to "Nagano CAKE", administrator_customer_top, class: "fas fa-birthday-cake" %>
-          </h1>
-        	<%= render 'layouts/header.admin' %>
-        <% else %>
-          <h1>
-           <%= link_to "Ngano Cake", root_path, class: "fas fa-birthday-cake" %>
-          </h1>
-        	<%= render 'layouts/login' %>
-        <% end %>
+      	<%= render 'layouts/header.admin' %>
+      <% else %>
+        <h1>
+         <%= link_to "Ngano Cake", root_path, class: "fas fa-birthday-cake" %>
+        </h1>
+      	<%= render 'layouts/login' %>
+      <% end %>
     </nav>
   </header>
 
 
-    
+
     <div class="container">
       <div id="flash">
         <%= render "layouts/flash" %>

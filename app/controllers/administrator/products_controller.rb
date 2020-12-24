@@ -12,7 +12,8 @@ class Administrator::ProductsController < ApplicationController
   def create
     product = Product.new(product_params)
     product.save
-    redirect_to administrator_product_path(product)
+    # 保存ができない
+    redirect_to administrator_products_path
   end
 
   def index
