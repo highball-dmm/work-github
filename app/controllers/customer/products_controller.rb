@@ -3,6 +3,7 @@ class Customer::ProductsController < ApplicationController
     def top
         @products = Product.all.order(created_at: :asc)
         @genres = Genre.all
+
     end
 
     def about
@@ -28,12 +29,12 @@ class Customer::ProductsController < ApplicationController
     	def product_params
     		parmas.require(:product).permit(:products_image_id,:name, :products_explanation, :non_taxed_price, :sale_status,)
     	end
-	
+
     	 def match(value)
             #.orを使用することで、valueに一致するカラムのデータをnameカラムとgenre_idカラムから探してきます。
             Product.where(name: value).or(Product.where(genre_id: value))
          end
-      
+
       def search_for(how, value)
         case how                     #引数のhowと一致する処理に進むように定義しています。
         when 'match'                 #ジャンル検索の場合はmatchで固定してるので、必ず'match'の処理に進みます。
