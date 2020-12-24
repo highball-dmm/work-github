@@ -1,6 +1,13 @@
-<h3>商品一覧</h3><%= link_to "＋", new_administrator_product_path %>
-
-<table>
+<br>
+<h4>商品一覧</h4>
+<br>
+<div class="col-xs-10 col-xs-offset-1">
+  <%= link_to new_administrator_product_path, class: "btn btn-warning pull-right new_product" do %>
+  <i class ="fas fa-plus" ></i>
+  <% end %>
+</div>
+<br>
+<table class="table">
   <tr></tr>
   <thead>
     <tr>

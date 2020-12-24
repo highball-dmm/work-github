@@ -1,74 +1,85 @@
-<p>注文履歴詳細</p>
+<br>
+<h4>注文履歴詳細</h4>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12" >
+      <div class="col-md-9">
+    	  <div class="col-md-12">
+    		  購入者<%= link_to administrator_customer_path(@order.customer) do %>
+          &nbsp;&nbsp;&nbsp;<%= @order.name %>
+        <% end %>
+      	</div>
+        <div class="col-md-12">
+          配送先&nbsp;&nbsp;&nbsp;<%= @order.address %>
+        </div>
+        </div>
+
+        <div class="col-md-12">
+            支払い方法&nbsp;&nbsp;&nbsp;<%= @order.payment_method %>
+        </div>
+        <div class="col-md-12">
+          注文ステータス
+          <%= form_with model: @order, url: administrator_order_path(@order), class: "order_status", local:true do |f| %>
+          <%= f.select :order_status, [["入金待ち", "入金待ち"], ["入金確認", "入金確認"], ["製作中", "制作中"], ["発送待ち", "発送待ち"], ["発送済", "発送済"]] %>
+          <%= f.submit "更新" %>
+          <% end %>
+        </div>
+        <br>
+        <br>
+      </div>
+      <div class="col-md-6">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>商品名</td>
+              <td>単価(税込)</td>
+              <td>数量</td>
+              <td>小計</td>
+              <td>製作ステータス</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+          <% @order_items.each do |order_item| %>
+            <tr>
+              <td><%= order_item.product.name %></td>
+              <td><%= (order_item.product.non_taxed_price * 1.1).floor %></td>
+              <td><%= order_item.item_quantity %></td>
+              <td><%= (order_item.product.non_taxed_price * 1.1).floor * order_item.item_quantity %></td>
+              <td><%= form_with model: order_item, url: administrator_order_item_path(order_item), method: :patch do |f| %>
+                <%= f.select :production_status, [["着手不可", "着手不可"], ["製作待ち", "製作待ち"], ["製作中", "製作中"], ["制作完了", "製作完了"]] %>
+                <%= f.submit "更新" %>
+              </td>
+              <% end %>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+      </div>
+
+      <div class="col-md-6  billing">
+    	<table>
+    		<tr>
+          <th class="info">商品合計</th>
+    		<td><%= @order.billing %>円</td>
+    		</tr>
+    		<tr>
+    			<th class="info">送料</th>
+    			<td>送料 <%= @order.shipping %>円</td>
+    		</tr>
+    		<tr>
+    			<th class="info">請求金額合計</th>
+    			<td>請求金額合計 <%= (@order.billing.to_i + @order.shipping.to_i) %>円</td>
+    		</tr>
+      </table>
+    </div>
+  </div>
+</div>
 
 
-<table>
-  <tr>
-    <td>購入者</td>
-    <td>
-      <%= link_to administrator_customer_path(@order.customer) do %>
-        <%= @order.name %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td>配送先</td>
-    <td><%= @order.address %></td>
-  </tr>
-  <tr>
-    <td>支払方法</td>
-    <td><%= @order.payment_method %></td>
-  </tr>
-  <tr>
-    <td>注文ステータス</td>
-    <td>
-      <%= form_with model: @order, url: administrator_order_path(@order), local:true do |f| %>
-      <%= f.select :order_status, [["入金待ち", "入金待ち"], ["入金確認", "入金確認"], ["製作中", "制作中"], ["発送待ち", "発送待ち"], ["発送済", "発送済"]] %>
-      <%= f.submit "更新" %>
-      <% end %>
-    </td>
-  </tr>
-</table>
 
 
-<table class="table">
-  <thead>
-    <tr>
-      <td>商品名</td>
-      <td>単価(税込)</td>
-      <td>数量</td>
-      <td>小計</td>
-      <td>製作ステータス</td>
-      <td></td>
-    </tr>
-  </thead>
-  <tbody>
-  <% @order_items.each do |order_item| %>
-    <tr>
-      <td><%= order_item.product.name %></td>
-      <td><%= (order_item.product.non_taxed_price * 1.1).floor %></td>
-      <td><%= order_item.item_quantity %></td>
-      <td><%= (order_item.product.non_taxed_price * 1.1).floor * order_item.item_quantity %></td>
-      <td><%= form_with model: order_item, url: administrator_order_item_path(order_item), method: :patch do |f| %>
-        <%= f.select :production_status, [["着手不可", "着手不可"], ["製作待ち", "製作待ち"], ["製作中", "製作中"], ["制作完了", "製作完了"]] %>
-        <%= f.submit "更新" %>
-      </td>
-      <% end %>
-    </tr>
-  </tbody>
-  <% end %>
-</table>
 
-  <table>
-    <tr>
-      <td>商品合計 <%= @order.billing %>円</td>
-    </tr>
-    <tr>
-      <td>送料 <%= @order.shipping %>円</td>
-    </tr>
-    <tr>
-      <td>請求金額合計 <%= (@order.billing.to_i + @order.shipping.to_i) %>円</td>
-    </tr>
-  </table>
-</table>
 
 <%= link_to "削除する", administrator_order_path(@order), method: :delete %>

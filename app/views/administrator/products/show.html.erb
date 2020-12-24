@@ -1,21 +1,42 @@
-<h3>商品詳細</h3>
+<br>
+<h4>商品詳細</h4>
 
-<table>
-  <tr>
-    <td>
-      <%= attachment_image_tag @product, :products_image, size: "100x100", fallback: "no_image.jpg" %>
-    </td>
-    <td>
-      商品名  <%= @product.name %><br>
-      商品説明 <%= @product.products_explanation %><br>
-      ジャンル <%= @product.genre.name %><br>
-      税抜価格 <%= @product.non_taxed_price %>円<br>
-      販売ステータス <%= @product.sale_status %><br>
-    </td>
-    <td>
-      <br><br><br><br><br><br><br><br>
-      <%= link_to "編集する", edit_administrator_product_path(@product) %>
-      <%= link_to "削除する", administrator_product_path(@product), method: :delete %>
-    </td>
-  </tr>
-</table>
+<div class="container">
+	<div class="row">
+	  <div class="col-md-4">
+	     <%= attachment_image_tag @product, :products_image, size: "250x250", fallback: "no_image.jpg" %>
+    </div>
+    <div class="col-md-8">
+      <div class="field">
+				<p>
+					商品名　　　　　<%= @product.name %>
+				</p>
+      </div><br>
+      <div class="field">
+				<p>
+					商品説明　　　　<%= @product.products_explanation %>
+				</p><br>
+      </div>
+      <div class="field">
+				<p>
+					ジャンル　　　　<%= @product.non_taxed_price %>
+				</p><br>
+      </div>
+      <div class="field">
+				<p>
+					税込価格  (税抜価格)        <%= (@product.non_taxed_price * 1.1).floor %> (<%= @product.non_taxed_price %>) 円<br>
+				</p><br>
+      </div>
+      <div class="field">
+				<p>
+					販売ステータス
+	        <%= @product.sale_status %>
+				</p>
+      </div>
+      <div class="actions col-md-9">
+      	<%= link_to "編集する", edit_administrator_product_path(@product), class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
+        <%= link_to "削除する", administrator_product_path(@product), method: :delete %>
+    	</div>
+  	</div>
+	</div>
+</div>

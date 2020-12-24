@@ -1,3 +1,21 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.img_field {
+  width: 250px;
+  height: 180px;
+  background-color: #EEEEEE;
+}
+form img.thumb {
+    margin: 0 5px 5px 0;
+    max-width: 250px;
+    height: 180px;
+    vertical-align: bottom;
+}
+.new_product {
+  margin-bottom: 15px !important;
+}
+.head-line {
+  margin-bottom: 20px !important;
+}
