@@ -13,7 +13,7 @@ class Customer::ShippingAddressesController < ApplicationController
 	  	 flash.now[:notice] = "新規配送先を登録しました"
 	      redirect_to shipping_addresses_path
 	  else
-	   	# @shipping_addresses = current_customer.shipping_address
+	   	  @shipping_addresses = current_customer.shipping_addresses
 	      render 'index'
 	  end
  end

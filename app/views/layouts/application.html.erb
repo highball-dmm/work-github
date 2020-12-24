@@ -7,36 +7,34 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body>
-  <header>
-    <nav>
+  
+  <body id="wrapper">
+   <header>
+    <nav class="navbar navbar-expand-lg navbar bg">
       
-        <h1>
-          <% if administrator_signed_in? %>
-          <% else %>
-          <% end %>
-        </h1>
         <% if administrator_signed_in? %>
           <h1>
-            <%= link_to "Nagano CAKE", administrator_customer_top, class: "fas fa-birthday-cake" %>
+            <%= link_to "Nagano CAKE", administrator_customer_top_path, class: "fas fa-birthday-cake" %>
           </h1>
         	<%= render 'layouts/header.admin' %>
         <% else %>
           <h1>
-           <%= link_to "Ngano Cake", root_path, class: "fas fa-birthday-cake" %>
+           <%= link_to "Nagano Cake", root_path, class: "fas fa-birthday-cake" %>
           </h1>
         	<%= render 'layouts/login' %>
         <% end %>
+      
     </nav>
   </header>
-
-
-    
+  
+  <main>
     <div class="container">
       <div id="flash">
         <%= render "layouts/flash" %>
       </div>
     <%= yield %>
     </div>
+  </main>
+    <footer></footer>
   </body>
 </html>
