@@ -21,7 +21,7 @@
           <%= form_with :model => @cart_item, url: cart_items_path, method: :post, local: true do |f| %>
             <%= f.hidden_field :product_id, value: @product.id %>
             <%= f.select :item_quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
-            <%= f.submit "カートに入れる" %>
+            <%= f.submit "カートに入れる", class: "glyphicon glyphicon-shopping-cart btn btn-primary" %>
           <% end %>
 
     </div>

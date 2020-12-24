@@ -37,11 +37,11 @@ class Customer::OrdersController < ApplicationController
 
     # addressにnew_addressの値がはいっていれば
     elsif params[:order][:addresses] == "new_address"
-      
+
   	  @shipping_address = ShippingAddress.new(shipping_address_params)
   	  @shipping_address.customer_id = current_customer.id
   	  @shipping_address.save
- 
+
       @order.shipping_postal_code = @shipping_address.postcode
       @order.address = @shipping_address.address
       @order.name = @shipping_address.name

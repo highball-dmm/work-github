@@ -81,8 +81,8 @@
           <%= f.hidden_field :payment_method %>
           <%= f.hidden_field :billing, value: @order.billing %>
           <%= f.hidden_field :shipping, value: @order.shipping.to_i %>
-          <%= link_to "注文情報入力へ戻る", new_customer_order_path, data: {"turbolinks" => false} %>
-          <%= f.submit "購入を確定する" %>
+          <%= link_to "注文情報入力へ戻る", new_customer_order_path, data: {"turbolinks" => false},class: "glyphicon glyphicon-folder-open btn btn-info pull-right"  %>
+          <%= f.submit "購入を確定する",class: "btn btn-success col-xs-5" %>
         <% end %>
       </div>
     <% else %>
