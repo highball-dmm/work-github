@@ -1,5 +1,24 @@
-<%= link_to "商品一覧", administrator_products_path, class: "header_btn glyphicon glyphicon-briefcase" %>
-<%= link_to "会員一覧", administrator_customers_path %>
-<%= link_to "注文履歴一覧", administrator_orders_path %>
-<%= link_to "ジャンル一覧", administrator_genres_path %>
-<%= link_to "ログアウト", destroy_administrator_session_path, method: :delete %>
+
+<div class="collapse navbar-collapse">
+  <ul class="navbar-nav ml-auto">
+   
+    <li class="nav-item">
+      <%= link_to "商品一覧", administrator_products_path, class: 'btn btn-outline-danger' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "会員一覧", administrator_customers_path, class: 'btn btn-outline-danger' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "注文履歴一覧", administrator_orders_path, class: 'btn btn-outline-danger' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "ジャンル一覧", administrator_genres_path, class: 'btn btn-outline-danger' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to "ログアウト", destroy_administrator_session_path, method: :delete, class: 'btn btn-outline-dark' %>
+    </li>
+  
+ </ul>
+ 
+</div>
+
