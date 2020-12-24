@@ -23,6 +23,7 @@ class Customer::ProductsController < ApplicationController
         @products = Product.all
         @product = Product.find(params[:id])
         @cart_item = CartItem.new
+        @genres = Genre.all
     end
 
 	private
