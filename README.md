@@ -1,5 +1,5 @@
 <h4>ER図</h4>
-[ER図 (1).pdf](https://github.com/highball-dmm/work-github/files/5738399/ER.1.pdf)
+https://github.com/highball-dmm/work-github/files/5738399/ER.1.pdf
 
 <h4>アプリ名</h4>
 長野ケーキ ECサイト
