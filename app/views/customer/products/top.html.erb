@@ -1,8 +1,8 @@
 <body class="test">
 <div class="container">
   <div class="row">
-    <div class="col-xs-4">
-        <table class="table table-bordered genre-table">
+    <div class="col-md-3">
+        <table class="table table-bordered genre-table text-center">
             <thead>
               <tr>
                 <th>ジャンル検索</th>
@@ -19,10 +19,10 @@
             </tbody>
         </table>
     </div>
-  	<div class="col-xs-8">
+  	<div class="col-md-9">
   			<div class = "sample">
   			  <p>
-  				  <span class="welcome">ようこそ、NaganoCakeへ！</span><br>
+  				  <span class="welcome text-center">ようこそ、NaganoCakeへ！</span><br>
   				  このサイトは、ケーキ販売のECサイトになります。<br>
   				  会員でない方も商品の閲覧はできますが、<br>
   				  購入には会員登録が必要になります。<br>
@@ -33,16 +33,17 @@
 
 
   <div class="row">
-      <div class="col-xs-12">
-        <h2 class="toppage-head">オススメ商品</h2>
-        <% @products.first(5). each do |product| %>
+      <div class="col-md-10 offset-md-2">
+         <h2 class="toppage-head">オススメ商品</h2>
+        <% @products.first(4). each do |product| %>
         	 <%= render "products_each", product: product %>
         <% end %>
-        <div class="col-xs-12">
-        	<%= link_to "もっと見る", administrator_products_path %>
-        </div>
       </div>
   </div>
+    <div class="col-xs-12">
+      <div class= "toppage-footer">
+      <%= link_to "もっと見る", customers_products_path %>
+    </div>
 </div>
 </body>
 
