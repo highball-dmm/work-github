@@ -17,7 +17,7 @@
           <% @cart_items.each do |cart| %>
           <tr>
             <td class="text-left">
-              <%= attachment_image_tag( cart.product, :products_image_id, size: "60x50", fallback: "no_image.jpg") %>
+              <%= attachment_image_tag( cart.product, :products_image, size: "60x50", fallback: "no_image.jpg") %>
               <%= cart.product.name %>
             </td>
             <td class="text-right">
