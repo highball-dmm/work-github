@@ -1,24 +1,20 @@
-# README
+<h4>ER図</h4>
+[ER図 (1).pdf](https://github.com/highball-dmm/work-github/files/5738399/ER.1.pdf)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<h4>アプリ名</h4>
+長野ケーキ ECサイト
 
-Things you may want to cover:
 
-* Ruby version
+<h4>説明</h4>
 
-* System dependencies
 
-* Configuration
+<h4>説明</h4>
+顧客側では、ユーザー登録後に登録されている商品を購入することができます。
+購入後は、購入した商品の履歴を確認することもできます。
 
-* Database creation
+管理者側では、商品の管理や顧客が購入した商品の注文状況を管理します。
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+<h4>制作者</h4>
+カッキー/ニッシー/ルンバ

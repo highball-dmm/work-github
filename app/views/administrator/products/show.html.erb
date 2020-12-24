@@ -33,7 +33,7 @@
 	        <%= @product.sale_status %>
 				</p>
       </div>
-      <div class="actions col-md-9">
+      <div class="actions col-md-9" style="text-align:right;">
       	<%= link_to "編集する", edit_administrator_product_path(@product), class: "glyphicon glyphicon-pencil btn btn-success pull-right" %>
         <%= link_to "削除する", administrator_product_path(@product), method: :delete %>
     	</div>
