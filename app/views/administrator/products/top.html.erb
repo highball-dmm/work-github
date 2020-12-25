@@ -1,12 +1,9 @@
-<div class="row">
-	<div class="col-md-12">
-		<h2 class="head-line title_h2 text-center">管理者画面</h2>
-		<p class="order-count">本日の注文件数
-			<span>
-				<%= link_to administrator_orders_path do %>
-        <%= @orders.count %>
-        <% end %>
-			</span>
-		</p>
-	</div>
-</div>
+<h3>管理画面</h3>
+
+<p>
+  本日の注文件数
+    <%= link_to administrator_orders_path do %>
+      <%= @orders.count %>
+    <% end %>
+  件
+</p>

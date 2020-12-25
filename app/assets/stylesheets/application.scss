@@ -30,7 +30,9 @@ li {
 .container {
   height: 100%;
 }
-
+header{
+    margin-bottom: 10vh;
+}
 #header {
    padding: 10px 20px 20px 20px;
    border-bottom: 1px solid #CCFFFF;
@@ -96,6 +98,7 @@ footer{
     text-align: center;
     margin-top: auto;
 }
+ 
 
 .product-container {
     display: flex;
@@ -124,7 +127,6 @@ footer{
     margin-top: 20px;
     margin-bottom: 20px;
 }
-
 
 .padding-left {
     padding: 0;
@@ -227,4 +229,3 @@ footer{
     margin-top: 180px;
     margin-left: 350px;
 }
-
