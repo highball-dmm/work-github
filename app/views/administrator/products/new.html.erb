@@ -11,32 +11,30 @@
         <%= f.attachment_field :products_image, placeholder: "商品画像", style: "padding: 15px;", onchange: "expressFile()" %>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="field row">
-        <%= f.label :name, "商品名", class:"control-label" %>
-        <%= f.text_field :name, class:'col-md-12 control-form' %>
+    <div class="col-md-5">
+      <div class="field row control-rabel-bottom">
+        <%= f.label :name, "商品名", class:"control-label-1" %>
+        <%= f.text_field :name, class:'control-form' %>
       </div>
-      <div class="field row">
+      <div class="field row control-rabel-bottom">
         <%= f.label :products_explanation, "商品説明", class:"control-label" %>
-        <%= f.text_area :products_explanation, class:'col-md-12 control-form' %>
+        <%= f.text_area :products_explanation, class:'control-form' %>
       </div>
-      <div class="field row">
+      <div class="field row control-rabel-bottom">
         <%= f.label :genre_id, "ジャンル", class:"control-label" %>
         <%= f.collection_select(:genre_id, @genres, :id, :name) %>
       </div>
-      <div class="field row">
+      <div class="field row control-rabel-bottom">
         <%= f.label :non_taxed_price, "税抜価格", class:"control-label" %>
-        <%= f.text_field :non_taxed_price, class:'col-md-12 control-form' %>
+        <%= f.text_field :non_taxed_price, class:'control-form' %>
       </div>
-      <div class="field row">
-        <%= f.label :sales_status, "販売ステータス", class:"control-label" %>
+      <div class="field row control-rabel-bottom">
+        <%= f.label :sales_status, "販売ステータス", class:"control-label-2" %>
         <%= f.select :sale_status, [["販売中", "販売中"], ["売り切れ", "売り切れ"]], class:"control-label" %>
       </div>
       <br>
-      <div class="actions row">
-      <div class="col-md-4 col-md-offset-4">
+      <div class="actions row new-btn">
         <%= f.submit '新規登録', class:'btn btn-primary' %>
-      </div>
       </div>
     </div>
   </div>
