@@ -20,6 +20,8 @@ class Order < ApplicationRecord
         end
     end
 
+    validates :customer_id, :address, :name, :postage, :payment_method, presence: true
+    validates :shipping_postal_code, length: {is: 7}, numericality: {only_integer: true}
 
 
 end
