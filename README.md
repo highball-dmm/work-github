@@ -1,11 +1,15 @@
 <h4>ER図</h4>
-[ER.1 (1).pdf](https://github.com/highball-dmm/work-github/files/5738476/ER.1.1.pdf)
+
+![ER 1-1](https://user-images.githubusercontent.com/72184121/103072389-cdb7f580-4608-11eb-8c0b-09c742b2cc4e.jpg)
 
 <h4>アプリケーション詳細設計</h4>
-[database_design 2.pdf](https://github.com/highball-dmm/work-github/files/5738473/database_design.2.pdf)
+
+![database_design 2-1](https://user-images.githubusercontent.com/72184121/103072471-fb9d3a00-4608-11eb-9e73-07a36ac11ec5.jpg)
+
 
 <h4>アプリ名</h4>
 長野ケーキ ECサイト
+
 
 <h4>説明</h4>
 顧客側では、ユーザー登録後に登録されている商品を購入することができます。
