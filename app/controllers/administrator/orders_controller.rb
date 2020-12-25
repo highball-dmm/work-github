@@ -11,7 +11,7 @@ class Administrator::OrdersController < ApplicationController
 
   def update
     order = Order.find(params[:id])
-    order.update(order_params)
+    order.update!(order_params)
     redirect_to request.referer
   end
 

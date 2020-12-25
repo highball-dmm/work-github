@@ -61,7 +61,7 @@ class Customer::OrdersController < ApplicationController
 	  @order = Order.new(order_params)
 	  @order.payment_method = params[:order][:payment_method].to_i
 	  @order.customer_id = current_customer.id
-    @order.save
+    @order.save!
     # 保存内容を追加する
 
     # もし情報入力でnew_addressの場合ShippingAddressに保存
@@ -119,7 +119,7 @@ class Customer::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:shipping_postal_code, :address, :name, :billing, :shipping)
   end
-  
+
   def shipping_address_params
   	params.require(:shipping_address).permit(:postcode, :address, :name)
   end

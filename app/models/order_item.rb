@@ -5,7 +5,7 @@ class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :product
 
-  validates :product_id, :order_id, :quantity, presence: true
-  validates :quantity, numericality: { only_integer: true }
+  validates :product_id, :order_id, :item_quantity, presence: true
+  validates :item_quantity, numericality: { only_integer: true }
 
 end
