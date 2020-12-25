@@ -2,11 +2,10 @@
 <h4>商品一覧</h4>
 <br>
 <div class="col-md-12 col-md-offset-1" style="text-align: right;">
-  <%= link_to new_administrator_product_path, class: "btn btn-warning pull-right new_product" do %>
+  <%= link_to new_administrator_product_path, class: "btn btn-info fab-buttons  new_product" do %>
   <i class ="fas fa-plus" ></i>
   <% end %>
 </div>
-<br>
 <table class="table">
   <tr></tr>
   <thead>
@@ -30,7 +29,7 @@
         <% end %>
       </td>
       <td><%= product.products_explanation %></td>
-      <td><%= product.non_taxed_price %></td>
+      <td><%= product.non_taxed_price %>円</td>
       <td><%= product.genre.name %></td>
       <td><%= product.sale_status %></td>
     </tr>
