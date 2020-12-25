@@ -34,10 +34,6 @@ module ApplicationHelper
 	end
 
 	def kana_full_name(customer)
-<<<<<<< HEAD
-		customer.kana_first_name+customer.kana_last_name
-=======
 		customer.kana_first_name + customer.kana_last_name
->>>>>>> origin/develop
 	end
 end
