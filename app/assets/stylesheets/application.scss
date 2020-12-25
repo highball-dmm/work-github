@@ -98,7 +98,7 @@ footer{
     text-align: center;
     margin-top: auto;
 }
- 
+
 
 .product-container {
     display: flex;
@@ -228,4 +228,11 @@ footer{
 .quit {
     margin-top: 180px;
     margin-left: 350px;
+}
+
+.ganrebox {
+    display: flex;
+    flex-direction: row;
+    float: left;
+    margin: 20px;
 }

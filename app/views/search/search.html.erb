@@ -26,12 +26,14 @@
 	  <h2>該当する商品はありません</h2>
 	<% end %>
   <% @datas.each do |data| %>
+  <div class="ganrebox">
    <%= link_to customers_product_path(data.id) do %>
 	      <div>
 	        <%= attachment_image_tag(data, :products_image, size: "180x130", fallback: "no_image.jpg") %>
 	      </div>
 	      <p><%= data.name %></p>
 	    <% end %>
+	 </div>
 
 	    <% if data.sale_status == true %>
 	      <p>¥<%= data.non_taxed_price.to_s(:delimited) %></p>
