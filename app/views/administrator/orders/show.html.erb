@@ -4,22 +4,24 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12" >
-      <div class="col-md-9">
+      <div class="col-md-9 padding-left">
     	  <div class="col-md-12">
-    		  購入者<%= link_to administrator_customer_path(@order.customer) do %>
-          &nbsp;&nbsp;&nbsp;<%= @order.name %>
+    		  購入者&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to administrator_customer_path(@order.customer) do %>
+          <%= @order.name %>
         <% end %>
       	</div>
         <div class="col-md-12">
-          配送先&nbsp;&nbsp;&nbsp;<%= @order.address %>
+          配送先&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @order.address %>
         </div>
         </div>
 
         <div class="col-md-12">
-            支払い方法&nbsp;&nbsp;&nbsp;<%= @order.payment_method %>
+            支払い方法&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= @order.payment_method %>
         </div>
-        <div class="col-md-12">
-          注文ステータス
+        <div class="col-md-12 inline">
+          <span>
+            注文ステータス
+          </span>
           <%= form_with model: @order, url: administrator_order_path(@order), class: "order_status", local:true do |f| %>
           <%= f.select :order_status, [["入金待ち", "入金待ち"], ["入金確認", "入金確認"], ["製作中", "制作中"], ["発送待ち", "発送待ち"], ["発送済", "発送済"]] %>
           <%= f.submit "更新" %>
@@ -59,6 +61,7 @@
       </div>
 
       <div class="col-md-6  billing">
+      <br><br><br><br>
     	<table>
     		<tr>
           <th class="info">商品合計</th>

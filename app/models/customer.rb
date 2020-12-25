@@ -16,5 +16,10 @@ class Customer < ApplicationRecord
 
   has_many :shipping_addresses, dependent: :destroy
   has_many :cart_items, dependent: :destroy
-end
 
+  validates :first_name, :last_name, :first_name_kana, :last_name_kana, :address, :phone_number, presence: true
+  validates :postcode, length: {is: 7}, numericality: { only_integer: true }
+  validates :phone_number, numericality: { only_integer: true }
+  validates :first_name_kana, :last_name_kana, format: { with: /\p{katakana}/, message: "カタカナで入力してください" }
+
+end

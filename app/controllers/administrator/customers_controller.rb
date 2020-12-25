@@ -14,7 +14,7 @@ class Administrator::CustomersController < ApplicationController
   def update
     customer = Customer.find(params[:id])
     customer.update(customer_params)
-    redirect_to administrator_customers_path
+    redirect_to administrator_customer_path(customer)
   end
 
   def destroy
